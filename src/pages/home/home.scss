@@ -1,3 +1,45 @@
-page-home {
-
+.cols{
+    border: 1px none;
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px;
+    margin-top:3px;
 }
+.btn_container {
+    padding-top: 14px;
+
+    button {
+        background: #3b5998;
+    }
+}
+// span > i {
+//     color: white;
+// }
+// span > input {
+//     background: none;
+//     color: white;
+//     padding: 0;
+//     border: 0;
+//     border-bottom: none;
+//     box-shadow: none;
+// }
+
+// input{
+//     border-bottom: none;
+//     box-shadow: none;
+// }
+// .item-md.item-block .item-inner,
+// .item-md.item-input.input-has-focus .item-inner,
+// .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner,
+// .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner,
+// .list-md .item-input.input-has-focus:last-child,
+// .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child,
+// .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {
+//     border-bottom: none;
+//     box-shadow: none;
+// }
+// .list-md .item-input.input-has-focus:last-child .item-inner,
+// .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child .item-inner,
+// .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child .item-inner {
+//     border-bottom: none;
+//     box-shadow: none;
+// }
