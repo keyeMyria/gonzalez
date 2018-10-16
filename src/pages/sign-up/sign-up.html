@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>signUp</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background:#95CF31;">
+  <ion-grid>
+    <ion-row style="background:none; margin-top: 2%">
+        <ion-col col-12>
+          <img src="assets/imgs/images.jpg"/>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+    
+  <ion-grid>
+    <ion-row>
+      <form [formGroup]="signupForm" (ngSubmit)="submit()">
+        <ion-grid>
+          <ion-row style="margin-top: 10%;">
+            <ion-col class="cols" style="background-color: #7EA515;color:#FFFFFF;">
+              <ion-row>
+                <ion-icon style="margin-top:2px; margin-right:5px; zoom:2.0;" name="person" item-start></ion-icon>
+                <ion-input style="margin-left: 2px;" placeholder="Full Name" formControlName="fullname"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+                  
+          <ion-row style="margin-top: 5%">
+            <ion-col class="cols" style="background-color: #7EA515;color:#FFFFFF;">
+              <ion-row>
+                <ion-icon style="margin-top:2px; margin-right:5px; zoom:2.0;"  name="mail" item-start></ion-icon>
+                <ion-input style="margin-left: 2px;" placeholder="Email" formControlName="email"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+              
+          <ion-row style="margin-top: 5%">
+            <ion-col class="cols" style="background-color: #7EA515;color:#FFFFFF;">
+              <ion-row>
+                <ion-icon style="margin-top:2px; margin-right:5px; zoom:2.0;" name="lock" item-start></ion-icon>
+                <ion-input style="margin-left: 2px;" placeholder="Password" type="password" formControlName="password"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+              
+          <ion-row style="margin-top:10%; background-color:;">
+              <ion-col cols-12>
+                  <button style="background-color:#BCDA6D  ;" ion-button full round padding>Sign Up</button>        
+              </ion-col>
+          </ion-row>
+                        
+        </ion-grid>
+      </form>
+    </ion-row>
+
+    <ion-row style="margin-top:10%; background-color:;">
+        <ion-col cols-12 >
+          <ion-list>
+            <ion-row>
+              <ion-label style="color:white; text-align: center;" (click)="gotToSignIn()">
+                Already have an account? Sign In</ion-label>
+            </ion-row>
+          </ion-list>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

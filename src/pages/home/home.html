@@ -10,7 +10,7 @@
     
   <ion-grid>
     <ion-row style="margin-top: 10%;">
-      <ion-col class="cols"  style="background-color: #7EA515;">
+      <ion-col class="cols"  style="background-color: #7EA515;color:#FFFFFF;">
         <!-- <ion-list > -->
         <ion-row>
           <!-- <ion-item class="cols"  style="background:rgb(7, 109, 7); color:#FFFFFF;"> -->
@@ -24,13 +24,13 @@
     </ion-row>
     
     <ion-row style="margin-top: 5%">
-        <ion-col class="cols" style="background-color: #7EA515  ;">
+        <ion-col class="cols" style="background-color: #7EA515;color:#FFFFFF;">
           <!-- <ion-list > -->
           <ion-row>
             <!-- <ion-item class="cols"  style="background:rgb(7, 109, 7); color:#FFFFFF;"> -->
               <!-- <ion-icon style="margin-left: 5px;zoom:1.0;" name="mail" item-start></ion-icon> -->
               <ion-icon style="margin-top:2px; margin-right:5px; zoom:2.0;" name="lock" item-start></ion-icon>
-              <ion-input style="margin-left: 2px;" placeholder="Password"></ion-input>
+              <ion-input style="margin-left: 2px;" placeholder="Password" type="password"></ion-input>
             <!-- </ion-item> -->
           </ion-row>
           <!-- </ion-list> -->
@@ -47,7 +47,7 @@
           <ion-col cols-12 >
             <ion-list>
               <ion-row>
-                <ion-label style="color:; text-align: center;">Forgot Password ?</ion-label>
+                  <ion-label style="color:none; text-align: center;" (click)="gotToPassword()">Forgot Password ?</ion-label>
               </ion-row>
             </ion-list>
           </ion-col>
@@ -66,7 +66,7 @@
             <ion-col cols-12 >
               <ion-list>
                 <ion-row>
-                  <ion-label style="color:; text-align: center;">
+                  <ion-label style="color:; text-align: center;" (click)="gotToSignUp()">
                     Don't havae an Account? Sign Up</ion-label>
                 </ion-row>
               </ion-list>

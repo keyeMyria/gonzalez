@@ -11,6 +11,11 @@
         background: #3b5998;
     }
 }
+ion-input{
+    input::placeholder {
+      color:white!important;
+    }
+}
 // span > i {
 //     color: white;
 // }

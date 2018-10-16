@@ -1,12 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Network } from '@ionic-native/network';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
+import { SignUpPage } from '../pages/sign-up/sign-up';
+import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire'
 
@@ -23,23 +28,30 @@ var config = {
   declarations: [
     MyApp,
     HomePage,
+    ForgotPasswordPage,
+    SignUpPage,
+    ChangepasswordPage,
     ProfilePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(config)
+    AngularFireModule.initializeApp(config),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
+    ForgotPasswordPage,
+    SignUpPage,
+    ChangepasswordPage,
     ProfilePage
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
+    StatusBar,    
+    InAppBrowser,
+    Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
