@@ -1,90 +1,44 @@
-<!--
-  Generated template for the ProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Profile Page</ion-title>
-  </ion-navbar>
-
+<ion-header style="background: #446611;">
+    <ion-navbar style="background-color: #33ee81;">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-10 text-center>
+                    <h6>PROFILE</h6>
+                </ion-col>
+                <ion-col col-2 style="background: red;">
+                    <h6 style="text-align: right;float:right;">SAVE</h6>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-navbar>
 </ion-header>
+<ion-content>
+    <ion-list>
 
+        <ion-item style= "background: #a09d9ee8">
+            <h4>CONTACT INFORMATION</h4>
+        </ion-item>
 
-<ion-content padding>
-
-    <ion-grid>
-        <ion-row style="background: ;">
-          <ion-col col-12>
-            <ion-list>
-    
-              <ion-item style="background-color: ;">
-                <ion-label style="color:none; text-align: center; margn"><h1>VIXICARD</h1></ion-label>
-              </ion-item>
-    
-              <ion-item style="background-color: ;">
-                <ion-label style="color:none; text-align: center;"><h1>Sign In</h1></ion-label>
-              </ion-item>
-    
-            </ion-list>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    
-    <ion-grid>
-        <ion-row style="background: ;">
-          <ion-col>
-            <ion-list class="cols">
-              <ion-row style="background-color:none;">
-                  <ion-input  placeholder="Username/Mobile Number"></ion-input>
-                    <img style="" src="assets/imgs/personal.png"/>
-                </ion-row>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-    
-        <ion-row style="background: ;">
-          <ion-col>
-            <ion-list class="cols">
-              <ion-row style="background-color:none;">
-                  <ion-input  placeholder="Password"></ion-input>
-                    <img style="" src="assets/imgs/personal.png"/>
-    
-              </ion-row>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-    
-        <ion-row>
-          <ion-col cols-12 >
-            <ion-list class="cols"style="background-color:white;">
-              <ion-row style="margin-top:5%; ">
-                <button style="background-color:white; height:100%; width:100%; "><h1>SIGN IN</h1></button>
-              </ion-row>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-    
-        <ion-row style="margin-top:; background-color:;">
-          <ion-col cols-12 >
-            <ion-list>
-              <ion-row>
-                <ion-label style="color:; text-align: center;">Forgot Password</ion-label>
-              </ion-row>
-            </ion-list>
-          </ion-col>
-        </ion-row>
-    
-        <ion-row style="margin-top:5%; background-color:;">
-          <ion-col cols-12 >
-    
-                <button style="background-color:white; width: 100%; height: 100%;" padding><h1 style="text-align: center; margin-top:2%;">CREATE ACCOUNT</h1></button>
-    
-          </ion-col>
-        </ion-row>
-    
-    </ion-grid>
-
+        <ion-item>
+            <ion-label fixed>Username</ion-label>
+            <ion-input type="username" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Email</ion-label>
+            <ion-input type="email" value=""></ion-input>
+        </ion-item>
+            <ion-item>
+            <ion-label fixed>Contact</ion-label>
+            <ion-input type="contact" value=""></ion-input>
+        </ion-item>
+         <ion-item>
+            <ion-label fixed>Nationality</ion-label>
+            <ion-input type="nat" value=""></ion-input>
+         </ion-item>
+         <ion-item>
+            <ion-label fixed>Address</ion-label>
+            <ion-input type="address" value=""></ion-input>
+         </ion-item>
+            
+    </ion-list>
 </ion-content>

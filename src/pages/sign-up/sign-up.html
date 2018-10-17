@@ -1,8 +1,3 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>signUp</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content padding style="background:#95CF31;">
   <ion-grid>
@@ -15,12 +10,12 @@
     
   <ion-grid>
     <ion-row>
-      <form [formGroup]="signupForm" (ngSubmit)="submit()">
+      <form [formGroup]="signupForm" (ngSubmit)="submit()" style="background: none; width: 100%;">
         <ion-grid>
           <ion-row style="margin-top: 10%;">
             <ion-col class="cols" style="background-color: #7EA515;color:#FFFFFF;">
               <ion-row>
-                <ion-icon style="margin-top:2px; margin-right:5px; zoom:2.0;" name="person" item-start></ion-icon>
+                <ion-icon style="margin-top:12px; margin-right:10px; zoom:1.0;margin-left: 6px;" name="person" item-start></ion-icon>
                 <ion-input style="margin-left: 2px;" placeholder="Full Name" formControlName="fullname"></ion-input>
               </ion-row>
             </ion-col>
@@ -29,7 +24,7 @@
           <ion-row style="margin-top: 5%">
             <ion-col class="cols" style="background-color: #7EA515;color:#FFFFFF;">
               <ion-row>
-                <ion-icon style="margin-top:2px; margin-right:5px; zoom:2.0;"  name="mail" item-start></ion-icon>
+                <ion-icon style="margin-top:12px; margin-right:10px; zoom:1.0;margin-left: 6px;"  name="mail" item-start></ion-icon>
                 <ion-input style="margin-left: 2px;" placeholder="Email" formControlName="email"></ion-input>
               </ion-row>
             </ion-col>
@@ -38,7 +33,7 @@
           <ion-row style="margin-top: 5%">
             <ion-col class="cols" style="background-color: #7EA515;color:#FFFFFF;">
               <ion-row>
-                <ion-icon style="margin-top:2px; margin-right:5px; zoom:2.0;" name="lock" item-start></ion-icon>
+                <ion-icon style="margin-top:12px; margin-right:10px; zoom:1.0;margin-left: 6px;" name="lock" item-start></ion-icon>
                 <ion-input style="margin-left: 2px;" placeholder="Password" type="password" formControlName="password"></ion-input>
               </ion-row>
             </ion-col>
@@ -59,7 +54,7 @@
           <ion-list>
             <ion-row>
               <ion-label style="color:white; text-align: center;" (click)="gotToSignIn()">
-                Already have an account? Sign In</ion-label>
+                Already have an account? <u><b>Sign In</b></u></ion-label>
             </ion-row>
           </ion-list>
         </ion-col>

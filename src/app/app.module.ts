@@ -7,10 +7,19 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ProfilePage } from '../pages/profile/profile';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+import { CategoriesPage } from '../pages/categories/categories';
+import { BookingHistoryPage } from '../pages/booking-history/booking-history';
+import { MyFavoritesPage } from '../pages/my-favorites/my-favorites';
+import { AccountPage } from '../pages/account/account';
+import { MainPage } from '../pages/main/main';
+import { ExperiencePage } from '../pages/experience/experience';
+import { ProfilePage } from '../pages/profile/profile';
+
+
+
 
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire'
@@ -31,8 +40,14 @@ var config = {
     ForgotPasswordPage,
     SignUpPage,
     ChangepasswordPage,
-    ProfilePage
-  ],
+    MainPage,
+    CategoriesPage,
+    BookingHistoryPage,
+    MyFavoritesPage,
+    AccountPage,
+    ProfilePage,
+    ExperiencePage
+    ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
@@ -46,7 +61,13 @@ var config = {
     ForgotPasswordPage,
     SignUpPage,
     ChangepasswordPage,
-    ProfilePage
+    MainPage,
+    CategoriesPage,
+    BookingHistoryPage,
+    MyFavoritesPage,
+    AccountPage,
+    ProfilePage,
+    ExperiencePage
   ],
   providers: [
     StatusBar,    

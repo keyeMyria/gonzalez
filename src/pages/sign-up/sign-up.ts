@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
+import { MainPage } from '../main/main';
 
 /**
  * Generated class for the SignUpPage page.
@@ -53,7 +54,38 @@ export class SignUpPage {
       let _pass = this.signupForm.value.password;
       let flag = this.isValid(_name, _email, _pass);
       if(flag == ""){ // If data is Valid
-        console.log("Value: " + this.signupForm.value);        
+        console.log("Value: " + this.signupForm.value);     
+        // Show Progress Dialog
+        let loading = this.loadingCtrl.create({
+          content: 'Registering User.<br/>Please wait...'
+        });
+
+        loading.present();
+        // Make Server Call
+        this.fire.auth.createUserWithEmailAndPassword(_email, _pass)
+        .then( res => {
+          console.log("Success: " + JSON.stringify(res));
+          if(res != null && res.user != null){
+            res.user.updateProfile({displayName: _name, photoURL: ""})
+            .then( res1 => {
+              loading.dismiss();
+              localStorage.setItem("user", JSON.stringify(res));
+              this.navCtrl.setRoot(MainPage);
+            }).catch( err1 => {
+              loading.dismiss();
+              this.showAlert("SIGNUP-FAILED!","Something went wrong.\nPlease try Again Later.");
+            });
+          }
+          else{
+            loading.dismiss();
+            console.log("Failed: " + JSON.stringify(res));
+            this.showAlert("SIGNUP-FAILED!","Something went wrong.\nPlease try Again Later.");
+          }
+        }).catch( err => {
+          loading.dismiss();
+          console.log("Failed: " + JSON.stringify(err));
+          this.showAlert("Failed", JSON.stringify(err));
+        });   
       }
       else{ // If data is not Valid
         this.showAlert("SIGNUP-FAILED!",flag);

@@ -22,4 +22,9 @@ export class ForgotPasswordPage {
     console.log('ionViewDidLoad ForgotPasswordPage');
   }
 
+  gotToSignIn() {
+    console.log("SignIn box is clicked");
+    this.navCtrl.popToRoot();
+  }
+
 }

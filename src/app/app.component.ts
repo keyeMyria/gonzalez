@@ -3,9 +3,10 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { HomePage } from '../pages/home/home';
-import { SignUpPage } from '../pages/sign-up/sign-up';
-import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
-import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+import { MainPage } from '../pages/main/main';
+import { MyFavoritesPage } from '../pages/my-favorites/my-favorites';
+import { AccountPage } from '../pages/account/account';
+
 @Component({
   templateUrl: 'app.html'
 })
