@@ -12,7 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainPage } from '../main/main';
 
 
-declare var navigator;
+declare var navigator;  
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -132,4 +132,5 @@ export class HomePage {
     });
     alert.present();
   }
+
 }

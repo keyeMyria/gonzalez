@@ -6,6 +6,8 @@ import { HomePage } from '../pages/home/home';
 import { MainPage } from '../pages/main/main';
 import { MyFavoritesPage } from '../pages/my-favorites/my-favorites';
 import { AccountPage } from '../pages/account/account';
+import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 
 @Component({
   templateUrl: 'app.html'
