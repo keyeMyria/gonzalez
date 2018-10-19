@@ -22,7 +22,7 @@ declare var navigator;
 export class ChangepasswordPage {
 
   changePasswordForm: FormGroup;
-  user: any;
+  public user: any;
 
   constructor(public navCtrl: NavController,
               private fire: AngularFireAuth,
@@ -30,6 +30,13 @@ export class ChangepasswordPage {
               public loadingCtrl: LoadingController,
               public navParams: NavParams,
               public app: App) {
+
+      const data = JSON.parse(localStorage.getItem("user"));
+      this.user = data.user;
+      
+      console.log(this.user);
+      console.log(this.user.email);
+      console.log(this.user.Password);
 
     this.changePasswordForm = new FormGroup({
       Old_Password: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -40,6 +47,11 @@ export class ChangepasswordPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChangepasswordPage');
+    console.log(JSON.stringify(this.user.changePassword));
+    console.log(JSON.stringify(this.user.changePassword));
+    console.log(JSON.stringify(this.user.changePasswordForm));
+
+      
   }
 
   changePassword(){
@@ -56,13 +68,53 @@ export class ChangepasswordPage {
         });
         loading.present();
 
+        this.fire.auth.signInWithEmailAndPassword(this.user.email, _current)
+        .then(data => {
+          console.log("SignIn: " , this.fire.auth.currentUser);
+          console.log("SignIn: " + JSON.stringify(data));
+          localStorage.removeItem("user");
+          localStorage.setItem("user", JSON.stringify(data));
+
+          this.fire.auth.currentUser.updatePassword(_new).then( res=> {
+            loading.dismiss();
+            this.showAlert("Password Change", "Success");
+          }).catch( err => {
+            loading.dismiss();
+            this.showAlert("Password Change", "Failed");
+            console.log(err);
+          });
+        })
+        .catch( err => {
+          loading.dismiss();          
+          this.showAlert("SIGNIN-FAILED", err);
+        })
+
+
+        // this.fire.auth.currentUser.reauthenticateWithCredential(this.user.Credentials).then( res=> {
+        //     loading.dismiss();
+        //     this.showAlert("Password Change", "Success");
+
+        // }).catch( err =>{
+        //   loading.dismiss();
+        //   this.showAlert("Password Change", "Failed");
+        // })
+        // this.fire.auth.currentUser.updatePassword(_new).then( res=> {
+        //     loading.dismiss();
+        //     this.showAlert("Password Change", "Success");
+        // }).catch( err => {
+        //   loading.dismiss();
+        //   this.showAlert("Password Change", "Failed");
+        //   console.log(err);
+        // });
+
+        // const us = this.fire.auth.currentUser;
+        // firebase.auth.EmailAuthProvider.credential(this.user.email, _new).
+
+        
         // const user = this.fire.auth.currentUser;
         // const credentials = firebase.auth.EmailAuthProvider.credential(user.email, 'Confirm_New_Password')
         // user.reauthenticateWithCredential(credentials)
         // .then(() => console.log('reauth ok'));
-
-        loading.dismiss();
-        
       }
       else{
         this.showAlert("PASSWORD-CHANGE-FAILED!",flag);

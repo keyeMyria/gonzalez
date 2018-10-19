@@ -24,6 +24,8 @@ declare var navigator;
 })
 export class AccountPage {
 
+  public user: any;
+
   constructor(public navCtrl: NavController,
               private network: Network,
               public fire: AngularFireAuth, 
@@ -31,6 +33,8 @@ export class AccountPage {
               public loadingCtrl: LoadingController,
               public app: App,
               public navParams: NavParams) {
+    const data = JSON.parse(localStorage.getItem("user"));
+    this.user = data.user;
   }
 
   ionViewDidLoad() {
