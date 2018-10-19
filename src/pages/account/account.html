@@ -1,0 +1,60 @@
+<!--
+  Generated template for the AccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>account</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+    <ion-item style= "background: #a09d9ee8">
+      <h4>PROFILE</h4>
+    </ion-item>
+      <ion-item>
+        <ion-label (click)="userProfile()"> Username</ion-label>
+        <ion-icon name="arrow-forward" item-end></ion-icon>
+      </ion-item>
+      <ion-item>
+          <ion-label>Notifications</ion-label>
+          <ion-toggle checked="false"></ion-toggle>
+      </ion-item>
+      <ion-item>
+          <ion-label (click)="changePassword()"> Change Password </ion-label>
+        <ion-icon name="arrow-forward" item-end></ion-icon>
+      </ion-item>
+
+    <ion-item style= "background: #a09d9ee8;">
+    </ion-item>
+
+      <ion-item>
+        <ion-label>Help Center</ion-label>
+          <ion-icon name="arrow-forward" item-end></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>Privacy Policy</ion-label>
+        <ion-icon name="arrow-forward" item-end></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>Terms & Conditions</ion-label>
+        <ion-icon name="arrow-forward" item-end></ion-icon>
+      </ion-item>
+
+
+    <ion-item style= "background: #a09d9ee8;">
+    </ion-item>
+    
+    <ion-item text-center>
+      <ion-label style="color: red;" (click)="onLogout()  ">Sign Out</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
