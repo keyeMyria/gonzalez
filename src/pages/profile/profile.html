@@ -1,44 +1,44 @@
-<ion-header style="background: #446611;">
-    <ion-navbar style="background-color: #33ee81;">
+<ion-header color="primary">
+    <ion-navbar color="primary" style="color: #FFFFFF;">
         <ion-grid>
             <ion-row>
                 <ion-col col-10 text-center>
                     <h6>PROFILE</h6>
                 </ion-col>
-                <ion-col col-2 style="background: red;">
-                    <h6 style="text-align: right;float:right;">EDIT</h6>
+                <ion-col col-2>
+                    <h6 style="text-align: right;float:right;" (click)="editProfile()">{{this.buttonText}}</h6>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </ion-navbar>
 </ion-header>
 <ion-content>
+   <form [formGroup]="profileForm"> 
     <ion-list>
-
         <ion-item style= "background: #AFB0AE;">
             <h4>CONTACT INFORMATION</h4>
         </ion-item>
 
         <ion-item>
             <ion-label fixed>Username</ion-label>
-            <ion-input type="username" value="{{this.user.displayName}}"></ion-input>
+            <ion-input disabled={{this.isUserName}} formControlName="username" value="{{this.user.displayName}}" style="text-align: right;"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label fixed>Email</ion-label>
-            <ion-input type="email" value=""></ion-input>
+            <ion-input type="email" formControlName="email" disabled={{this.isEmail}} value="{{this.user.email}}"></ion-input>
         </ion-item>
             <ion-item>
             <ion-label fixed>Contact</ion-label>
-            <ion-input type="contact" value=""></ion-input>
+            <ion-input type="contact" formControlName="Contact" disabled={{this.isContact}} value=""></ion-input>
         </ion-item>
          <ion-item>
             <ion-label fixed>Nationality</ion-label>
-            <ion-input type="nat" value=""></ion-input>
+            <ion-input type="nat" formControlName="Nationality" disabled={{this.isNationality}} value=""></ion-input>
          </ion-item>
          <ion-item>
             <ion-label fixed>Address</ion-label>
-            <ion-input type="address" value=""></ion-input>
+            <ion-input type="address" formControlName="Address" disabled={{this.isAddress}} value=""></ion-input>
          </ion-item>
-            
-    </ion-list>
+        </ion-list>
+    </form>
 </ion-content>

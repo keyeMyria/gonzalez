@@ -1,19 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController } from 'ionic-angular';
 
-
-/**
- * Generated class for the ForgotPasswordPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 declare var navigator;
-
 @IonicPage()
 @Component({
   selector: 'page-forgot-password',
@@ -22,7 +13,6 @@ declare var navigator;
 export class ForgotPasswordPage {
 
   resetPasswordForm : FormGroup;
-  // email: AbstractControl;
   
   constructor(public navCtrl: NavController,
               private fire: AngularFireAuth,
@@ -32,7 +22,6 @@ export class ForgotPasswordPage {
     this.resetPasswordForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(".+\@.+\..+")]),
     })
-    // this.email = this.resetPasswordForm.controls['email'];
   }
 
   ionViewDidLoad() {
@@ -56,17 +45,20 @@ export class ForgotPasswordPage {
           content: 'Authenticating Your Detail.<br/>Please wait...'
          });  
         loading.present();
-        
-
         this.fire.auth.sendPasswordResetEmail(_email)
         .then( res => {
           console.log('Email sent', res);
           loading.dismiss();          
-          this.showAlert("RESET PASSWORD Success", JSON.stringify(res));
+          this.showAlert("", "An email with instructions to change Your password has been sent to Your account. Follow the instructions to update Your password");
         })
         .catch( err => {
           loading.dismiss();
-        this.showAlert("RESET PASSWORD FAILED", err);
+          console.log("Error is: " + err);
+          let str = JSON.stringify(err);
+          console.log("Stringify: " + str);
+          let errors = JSON.parse(str);
+          console.log("Errors: " + errors["message"]);
+          this.showAlert("RESET PASSWORD FAILED", errors.message);
         })
       }
       else{

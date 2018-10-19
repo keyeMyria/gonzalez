@@ -1,68 +1,70 @@
-<ion-content padding style="background:#95CF31 ;">
-
+<ion-content padding class="home_bg">
   <ion-grid>
-    <ion-row style="background:none; margin-top: 15px">
+    <ion-row class="logo">
         <ion-col col-12>
-          <img src="assets/imgs/images.jpg"/>
+          <img src="assets/imgs/company_logo.png"/>
         </ion-col>
     </ion-row>
   </ion-grid>
     
   <ion-grid>
+    
     <ion-row>
-      <form [formGroup]="signInForm" (ngSubmit)="signIn()" style="background: none; width: 100%;">
+      <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="home_form">
           <ion-grid>
-            <ion-row style="margin-top: 10%;">
-              <ion-col class="cols"  style="background-color: #7EA515;color:#FFFFFF;">
+            <ion-row>
+              <ion-col class="cols my_input" full>
                 <ion-row>
-                  <ion-icon style="margin-top:12px; margin-right:10px; zoom:1.0;margin-left: 6px;" name="mail" item-start></ion-icon>
-                  <ion-input style="margin-left: 2px;"  placeholder="Email" formControlName="email"></ion-input>
+                  <ion-icon name="mail" item-start></ion-icon>
+                  <ion-input placeholder="Email" formControlName="email" type="email"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
             
-            <ion-row style="margin-top: 5%; background: none">
-              <ion-col class="cols" full style="background-color: #7EA515;color:#FFFFFF;">
+            <ion-row style="margin-top: 12px;">
+              <ion-col class="cols my_input" full>
                 <ion-row>
-                  <ion-icon style="margin-top:12px; margin-right:10px;margin-left:6px; zoom:1.0;" name="lock" item-start></ion-icon>
-                  <ion-input style="margin-left: 2px;" placeholder="Password" formControlName="password" type="password"></ion-input>
+                  <ion-icon name="lock" item-start></ion-icon>
+                  <ion-input placeholder="Password" formControlName="password" type="password"></ion-input>
                 </ion-row>
               </ion-col>
             </ion-row>
 
-            <ion-row style="margin-top:10%; background-color:;">
+            <ion-row style="margin-top:20px;">
               <ion-col cols-12>
-                <button style="background-color:#BCDA6D; color: white;" ion-button full round padding>Sign In</button>        
+                <button ion-button full round padding>Sign In</button>        
               </ion-col>
             </ion-row>
           </ion-grid>
       </form>
     </ion-row>
 
-    <ion-row style="margin-top:; background-color:;">
+    <ion-row>
       <ion-col cols-12 >
         <ion-list>
-          <ion-row>
-            <ion-label style="color:none; text-align: center; color: white;" (click)="gotToPassword()">Forgot Password ?</ion-label>
+          <ion-row text-center>
+            <ion-label class="forgot_password" (click)="gotToPassword()">Forgot Password?</ion-label>
           </ion-row>
         </ion-list>
       </ion-col>
     </ion-row>
 
-    <ion-row style="margin-top:0%; background-color:;">
+    <ion-row>
       <ion-col cols-12>
-        <button style="background-color:none;"  color="fb" ion-button full round padding (click)="loginWithFacebook()">
-        <ion-icon style="margin-top:1px; margin-right:5px; zoom:1.5;" name="logo-facebook" item-start></ion-icon>
-        Connect with facebook</button>        
+        <button color="fb" ion-button full round padding (click)="loginWithFacebook()">
+          <ion-icon class="fb_icon" name="logo-facebook" item-start></ion-icon>
+          Connect with facebook
+        </button>        
       </ion-col>
     </ion-row>
 
-    <ion-row style="margin-top:; background-color:;">
+    <ion-row>
       <ion-col cols-12 >
         <ion-list>
           <ion-row>
-            <ion-label style="color:; text-align: center; color: white;" (click)="gotToSignUp()">
-              Don't hava an Account? <u><b>Sign Up</b></u></ion-label>
+            <ion-label class="forgot_password" (click)="gotToSignUp()">
+              Don't hava an Account? <u><b>Sign Up</b></u>
+            </ion-label>
           </ion-row>
         </ion-list>
       </ion-col>

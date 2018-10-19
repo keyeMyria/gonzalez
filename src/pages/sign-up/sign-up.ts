@@ -3,15 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
-import { Network } from '@ionic-native/network';
 import { MainPage } from '../main/main';
-
-/**
- * Generated class for the SignUpPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 declare var navigator;
 @IonicPage()
@@ -22,12 +14,16 @@ declare var navigator;
 export class SignUpPage {
 
   signupForm: FormGroup;
+  userData = {
+    email: "",
+    name: "",
+    image: ""
+  }
 
   constructor(private fire: AngularFireAuth, 
               public navCtrl: NavController, 
               public navParams: NavParams,
               public alertCtrl: AlertController,
-              private network: Network,
               public detector: ChangeDetectorRef,
               public loadingCtrl: LoadingController) {
     this.signupForm = new FormGroup({
@@ -68,12 +64,26 @@ export class SignUpPage {
           if(res != null && res.user != null){
             res.user.updateProfile({displayName: _name, photoURL: ""})
             .then( res1 => {
+              this.userData.email = res.user.email;
+              this.userData.name = res.user.displayName;
+              this.userData.image = res.user.photoURL;
+              console.log(this.userData.email);
+              // For Raheem
+              // Start from Here and try to save the object userData (in line # 61) in Firebase RealTime Database
+              // After saving data, dismiss the loading and save User to localstorage (means sessions) and go to the main page
+              // After doing this, go to Home page, create a similar "userData" variable in that class with attributes image, name and email. 
+              // And in Facebook login, try to save the User data in Firebase Realtime database, like You do here.
               loading.dismiss();
               localStorage.setItem("user", JSON.stringify(res));
               this.navCtrl.setRoot(MainPage);
             }).catch( err1 => {
-              loading.dismiss();
-              this.showAlert("SIGNUP-FAILED!","Something went wrong.\nPlease try Again Later.");
+              loading.dismiss();          
+              console.log("Error is: " + err1);
+              let str = JSON.stringify(err1);
+              console.log("Stringify: " + str);
+              let errors = JSON.parse(str);
+              console.log("Errors: " + errors["message"]);
+              this.showAlert("SIGNIN-FAILED", errors.message);
             });
           }
           else{
@@ -82,9 +92,13 @@ export class SignUpPage {
             this.showAlert("SIGNUP-FAILED!","Something went wrong.\nPlease try Again Later.");
           }
         }).catch( err => {
-          loading.dismiss();
-          console.log("Failed: " + JSON.stringify(err));
-          this.showAlert("Failed", JSON.stringify(err));
+          loading.dismiss();          
+          console.log("Error is: " + err);
+          let str = JSON.stringify(err);
+          console.log("Stringify: " + str);
+          let errors = JSON.parse(str);
+          console.log("Errors: " + errors["message"]);
+          this.showAlert("SIGNIN-FAILED", errors.message);
         });   
       }
       else{ // If data is not Valid

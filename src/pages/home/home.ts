@@ -5,9 +5,7 @@ import { SignUpPage } from '../sign-up/sign-up';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { from } from 'rxjs/observable/from';
 import { AlertController } from 'ionic-angular';
-import { Network } from '@ionic-native/network';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainPage } from '../main/main';
 
@@ -24,7 +22,6 @@ export class HomePage {
   constructor(public fire: AngularFireAuth, 
               public statusBar: StatusBar,
               public alertCtrl: AlertController,
-              private network: Network,
               public loadingCtrl: LoadingController,
               public navCtrl: NavController) {
      
@@ -33,11 +30,15 @@ export class HomePage {
         password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       })           
 
+      if(localStorage.getItem("user")){
+        this.navCtrl.setRoot(MainPage);
+      }
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.statusBar.backgroundColorByHexString("#95CF31");
+    this.statusBar.backgroundColorByHexString("#6b9423");
     if(localStorage.getItem("user")){
       this.navCtrl.setRoot(MainPage);
     }
@@ -48,9 +49,11 @@ export class HomePage {
       this.fire.auth.signInWithPopup(new auth.FacebookAuthProvider())
       .then(res => {
         console.log(res);
+        // Facebook Login Success
         localStorage.setItem("user", JSON.stringify(res));
         this.navCtrl.setRoot(MainPage);
       }).catch( res => {
+        // Facebook Login Failed
         console.log("Error: " + res);
       })
     }
@@ -65,7 +68,7 @@ export class HomePage {
       let _password = this.signInForm.value.password;
       let flag = this.isValid(_email, _password);
       if(flag == ""){
-        console.log("Value: " + this.signInForm.value);     
+        console.log("Value: " + JSON.stringify(this.signInForm.value));     
         // Show Progress Dialog
         let loading = this.loadingCtrl.create({
           content: 'Authenticating Your Detail.<br/>Please wait...'
@@ -82,9 +85,13 @@ export class HomePage {
         })
         .catch( err => {
           loading.dismiss();          
-          this.showAlert("SIGNIN-FAILED", err);
+          console.log("Error is: " + err);
+          let str = JSON.stringify(err);
+          console.log("Stringify: " + str);
+          let errors = JSON.parse(str);
+          console.log("Errors: " + errors["message"]);
+          this.showAlert("SIGNIN-FAILED", errors.message);
         })
-
        }
        else{
          this.showAlert("SIGNIN-FAILED", flag);
@@ -94,8 +101,6 @@ export class HomePage {
       this.showAlert("SIGNUP-FAILED!", "No Internet Connection Found.<br/>Connect to a network and try again.");
     }
   }
-  
-
   
   isValid(email:string, password:string){
     let error = "";
