@@ -1,15 +1,6 @@
 import { Component, Input, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-//import { DISABLED } from '@angular/forms/src/model';
-
-
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -19,7 +10,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ProfilePage {
 
   profileForm: FormGroup;
-  public user: any;
   public flag: boolean;
   public isUserName: boolean;
   public isEmail: boolean;
@@ -28,13 +18,14 @@ export class ProfilePage {
   public isAddress: boolean;
   public buttonText: string;
 
-
+  public user: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               ) {
     const data = JSON.parse(localStorage.getItem("user"));
-    this.user = data.user;
+    console.log(data.email);
+    this.user = data;
     // Disbaled all input fields
     this.flag = false;
     this.isUserName = true;

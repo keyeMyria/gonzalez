@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { MainPage } from '../main/main';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 declare var navigator;
 @IonicPage()
@@ -17,10 +18,13 @@ export class SignUpPage {
   userData = {
     email: "",
     name: "",
-    image: ""
+    image: "",
+    contact: "",
+    nationality: "",
+    address: ""
   }
-
-  constructor(private fire: AngularFireAuth, 
+  constructor(private fire: AngularFireAuth,
+              private db: AngularFireDatabase, 
               public navCtrl: NavController, 
               public navParams: NavParams,
               public alertCtrl: AlertController,
@@ -31,6 +35,11 @@ export class SignUpPage {
       email: new FormControl('', [Validators.required, Validators.pattern(".+\@.+\..+")]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     })
+
+    let dataList = this.db.list('userData');
+    dataList.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val()}));
+    });
   }
 
   ionViewDidLoad() {
@@ -66,16 +75,28 @@ export class SignUpPage {
             .then( res1 => {
               this.userData.email = res.user.email;
               this.userData.name = res.user.displayName;
-              this.userData.image = res.user.photoURL;
               console.log(this.userData.email);
-              // For Raheem
-              // Start from Here and try to save the object userData (in line # 61) in Firebase RealTime Database
-              // After saving data, dismiss the loading and save User to localstorage (means sessions) and go to the main page
-              // After doing this, go to Home page, create a similar "userData" variable in that class with attributes image, name and email. 
-              // And in Facebook login, try to save the User data in Firebase Realtime database, like You do here.
-              loading.dismiss();
-              localStorage.setItem("user", JSON.stringify(res));
-              this.navCtrl.setRoot(MainPage);
+              console.log(this.userData.name);
+
+              let id = this.userData.email;
+              id = id.replace("@", "-");
+              id = id.replace(/\./g, "_");
+              console.log("ID: " + id);
+
+              this.db.object(`Users/${id}`).set(this.userData).then( res=> {
+                loading.dismiss();
+                localStorage.clear();
+                localStorage.setItem("user", JSON.stringify(this.userData));
+                this.navCtrl.setRoot(MainPage);
+              }).catch( err=>{
+                loading.dismiss();          
+                console.log("Error is: " + err);
+                let str = JSON.stringify(err);
+                console.log("Stringify: " + str);
+                let errors = JSON.parse(str);
+                console.log("Errors: " + errors["message"]);
+                this.showAlert("SIGNUP-FAILED", errors.message);
+              });
             }).catch( err1 => {
               loading.dismiss();          
               console.log("Error is: " + err1);
@@ -83,7 +104,7 @@ export class SignUpPage {
               console.log("Stringify: " + str);
               let errors = JSON.parse(str);
               console.log("Errors: " + errors["message"]);
-              this.showAlert("SIGNIN-FAILED", errors.message);
+              this.showAlert("SIGNUP-FAILED", errors.message);
             });
           }
           else{
@@ -98,7 +119,7 @@ export class SignUpPage {
           console.log("Stringify: " + str);
           let errors = JSON.parse(str);
           console.log("Errors: " + errors["message"]);
-          this.showAlert("SIGNIN-FAILED", errors.message);
+          this.showAlert("SIGNUP-FAILED", errors.message);
         });   
       }
       else{ // If data is not Valid

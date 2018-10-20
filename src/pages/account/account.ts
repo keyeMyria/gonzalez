@@ -3,18 +3,8 @@ import { IonicPage, NavController, NavParams, App, LoadingController } from 'ion
 import { ProfilePage } from '../profile/profile';
 import { ChangepasswordPage } from '../changepassword/changepassword';
 import { AlertController } from 'ionic-angular';
-import { Network } from '@ionic-native/network';
 import { HomePage } from '../home/home';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-
-
-/**
- * Generated class for the AccountPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 declare var navigator;
 
 @IonicPage()
@@ -27,14 +17,16 @@ export class AccountPage {
   public user: any;
 
   constructor(public navCtrl: NavController,
-              private network: Network,
               public fire: AngularFireAuth, 
               public alertCtrl: AlertController,
               public loadingCtrl: LoadingController,
               public app: App,
               public navParams: NavParams) {
     const data = JSON.parse(localStorage.getItem("user"));
-    this.user = data.user;
+    console.log("Email: " + data.email + " Name:" + data.name);
+    this.user = data;
+    console.log("Email: " + this.user.email + " Name:" + this.user.name);
+            
   }
 
   ionViewDidLoad() {

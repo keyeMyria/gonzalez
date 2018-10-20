@@ -8,7 +8,11 @@ import { auth } from 'firebase/app';
 import { AlertController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainPage } from '../main/main';
+// import { Profile} from '../Profile/Profile';
+// import { ProfilePage } from '../pages/profile/profile';
 
+
+import { AngularFireDatabase, AngularFireObject} from 'angularfire2/database';
 
 declare var navigator;  
 @Component({
@@ -19,9 +23,19 @@ export class HomePage {
 
   signInForm: FormGroup;
 
+  userData = {
+    email: "",
+    name: "",
+    image: "",
+    contact: "",
+    nationality: "",
+    address: ""
+  }
+
   constructor(public fire: AngularFireAuth, 
               public statusBar: StatusBar,
               public alertCtrl: AlertController,
+              private db: AngularFireDatabase, 
               public loadingCtrl: LoadingController,
               public navCtrl: NavController) {
      
@@ -46,16 +60,130 @@ export class HomePage {
 
   loginWithFacebook(){
     if(navigator.onLine){
-      this.fire.auth.signInWithPopup(new auth.FacebookAuthProvider())
-      .then(res => {
-        console.log(res);
-        // Facebook Login Success
-        localStorage.setItem("user", JSON.stringify(res));
-        this.navCtrl.setRoot(MainPage);
-      }).catch( res => {
+      // For real Device
+      this.fire.auth.signInWithRedirect(new auth.FacebookAuthProvider()).
+      then(()=> {
+          this.fire.auth.getRedirectResult().then( data=>{
+            // Show Progress Dialog
+            let loading = this.loadingCtrl.create({
+              content: 'Authenticating Your Detail.<br/>Please wait...'
+              });
+            loading.present();
+            console.log(data);
+            // Facebook Login Success
+            let id = data.user.email;
+            id = id.replace("@", "-");
+            id = id.replace(/\./g, "_");
+            console.log("ID: " + id);
+
+            this.db.object(`Users/${id}`).valueChanges().subscribe(res => {
+              if(res == null){
+                  this.userData.email = data.user.email;
+                  this.userData.name = data.user.displayName;
+                  this.userData.image = data.user.photoURL;
+                  this.db.object(`Users/${id}`).set(this.userData)
+                  .then( res => {
+                    if(loading.present())
+                      loading.dismiss();
+                    localStorage.clear();
+                    localStorage.setItem("user", JSON.stringify(this.userData));
+                    this.navCtrl.setRoot(MainPage);
+                  }).catch( err=>{
+                    if(loading.present())
+                      loading.dismiss();          
+                    console.log("Error is: " + err);
+                    let str = JSON.stringify(err);
+                    console.log("Stringify: " + str);
+                    let errors = JSON.parse(str);
+                    console.log("Errors: " + errors["message"]);
+                    this.showAlert("SIGNIN-FAILED", errors.message);
+                  });
+              }
+              else{
+                console.log("User:" + JSON.stringify(res));
+                let userData1 = res;
+                localStorage.clear();
+                localStorage.setItem("user", JSON.stringify(userData1));
+                loading.dismiss();
+                this.navCtrl.setRoot(MainPage);
+              }
+            });
+          }).catch(err=>{
+            console.log("Error is: " + err);
+            let str = JSON.stringify(err);
+            console.log("Stringify: " + str);
+            let errors = JSON.parse(str);
+            console.log("Errors: " + errors["message"]);
+            this.showAlert("SIGNIN-FAILED", errors.message);
+          });
+      }).catch( err=> {
         // Facebook Login Failed
-        console.log("Error: " + res);
-      })
+        console.log("Error is: " + err);
+        let str = JSON.stringify(err);
+        console.log("Stringify: " + str);
+        let errors = JSON.parse(str);
+        console.log("Errors: " + errors["message"]);
+        this.showAlert("SIGNIN-FAILED", errors.message);        
+      })      
+      // This work only on Browers
+      // this.fire.auth.signInWithPopup(new auth.FacebookAuthProvider())
+      // .then(data => {
+
+      //   // Show Progress Dialog
+      //   let loading = this.loadingCtrl.create({
+      //     content: 'Authenticating Your Detail.<br/>Please wait...'
+      //     });
+      //   loading.present();
+      //   console.log(data);
+      //   // Facebook Login Success
+      //   let id = data.user.email;
+      //   id = id.replace("@", "-");
+      //   id = id.replace(/\./g, "_");
+      //   console.log("ID: " + id);
+
+      //   this.db.object(`Users/${id}`).valueChanges().subscribe(res => {
+      //     if(res == null){
+      //         this.userData.email = data.user.email;
+      //         this.userData.name = data.user.displayName;
+      //         this.userData.image = data.user.photoURL;
+      //         this.db.object(`Users/${id}`).set(this.userData)
+      //         .then( res => {
+      //           if(loading.present())
+      //             loading.dismiss();
+      //           localStorage.clear();
+      //           localStorage.setItem("user", JSON.stringify(this.userData));
+      //           this.navCtrl.setRoot(MainPage);
+      //         }).catch( err=>{
+      //           if(loading.present())
+      //             loading.dismiss();          
+      //           console.log("Error is: " + err);
+      //           let str = JSON.stringify(err);
+      //           console.log("Stringify: " + str);
+      //           let errors = JSON.parse(str);
+      //           console.log("Errors: " + errors["message"]);
+      //           this.showAlert("SIGNIN-FAILED", errors.message);
+      //         });
+      //     }
+      //     else{
+      //       console.log("User:" + JSON.stringify(res));
+      //       let userData1 = res;
+      //       localStorage.clear();
+      //       localStorage.setItem("user", JSON.stringify(userData1));
+      //       loading.dismiss();
+      //       this.navCtrl.setRoot(MainPage);
+      //     }
+      //   });
+
+
+      // }).catch( err => {
+      //   // Facebook Login Failed
+      //   console.log("Error is: " + err);
+      //   let str = JSON.stringify(err);
+      //   console.log("Stringify: " + str);
+      //   let errors = JSON.parse(str);
+      //   console.log("Errors: " + errors["message"]);
+      //   this.showAlert("SIGNIN-FAILED", errors.message);
+      // })
     }
     else{
       this.showAlert("SIGNIN-FAILED!", "No Internet Connection Found.<br/>Connect to a network and try again.");
@@ -77,11 +205,43 @@ export class HomePage {
 
         this.fire.auth.signInWithEmailAndPassword(_email, _password)
         .then(data => {
-          console.log("SignIn: " , this.fire.auth.currentUser);
-          console.log("SignIn: " + JSON.stringify(data));
-          loading.dismiss();          
-          localStorage.setItem("user", JSON.stringify(data));
-          this.navCtrl.setRoot(MainPage);
+          console.log(data);
+
+          let id = data.user.email;
+          id = id.replace("@", "-");
+          id = id.replace(/\./g, "_");
+          console.log("ID: " + id);
+
+          this.db.object(`Users/${id}`).valueChanges().subscribe(res => {
+            if(res == null){
+                this.userData.email = data.user.email;
+                this.userData.name = data.user.displayName;
+                this.userData.image = data.user.photoURL;
+                this.db.object(`Users/${id}`).set(this.userData).then( res=> {
+                  loading.dismiss();
+                  localStorage.clear();
+                  localStorage.setItem("user", JSON.stringify(this.userData));
+                  this.navCtrl.setRoot(MainPage);
+                }).catch( err=>{
+                  loading.dismiss();          
+                  console.log("Error is: " + err);
+                  let str = JSON.stringify(err);
+                  console.log("Stringify: " + str);
+                  let errors = JSON.parse(str);
+                  console.log("Errors: " + errors["message"]);
+                  this.showAlert("SIGNIN-FAILED", errors.message);
+                });
+            }
+            else{
+              console.log("User:" + JSON.stringify(res));
+              let userData1 = res;
+              localStorage.clear();
+              localStorage.setItem("user", JSON.stringify(userData1));
+              loading.dismiss();
+              this.navCtrl.setRoot(MainPage);
+            }
+          });
+
         })
         .catch( err => {
           loading.dismiss();          

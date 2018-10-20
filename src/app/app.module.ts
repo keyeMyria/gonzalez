@@ -17,11 +17,11 @@ import { AccountPage } from '../pages/account/account';
 import { MainPage } from '../pages/main/main';
 import { ExperiencePage } from '../pages/experience/experience';
 import { ProfilePage } from '../pages/profile/profile';
-
-
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire'
+import { from } from 'rxjs/observable/from';
 
 var config = {
   apiKey: "AIzaSyBouFPqwMCAb33Bf2I5fzNDDJikUBkUTE0",
@@ -52,6 +52,7 @@ var config = {
     IonicModule.forRoot(MyApp),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(config),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
