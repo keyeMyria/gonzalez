@@ -36,10 +36,10 @@ export class SignUpPage {
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     })
 
-    let dataList = this.db.list('userData');
-    dataList.snapshotChanges().map(changes => {
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val()}));
-    });
+    // let dataList = this.db.list('userData');
+    // dataList.snapshotChanges().map(changes => {
+    //   return changes.map(c => ({ key: c.payload.key, ...c.payload.val()}));
+    // });
   }
 
   ionViewDidLoad() {

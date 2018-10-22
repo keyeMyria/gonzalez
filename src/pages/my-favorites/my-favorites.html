@@ -1,104 +1,37 @@
 <ion-header>
   <ion-navbar color="primary">
-    My Favorites
+    <ion-title>My Favorites</ion-title>
+
   </ion-navbar>
 </ion-header>
   
   
   <ion-content>
   <ion-list>
-    
-        <ion-item>
-            <ion-avatar item-start>
-                <img src="assets/imgs/avatar.png">
-            </ion-avatar>
-             <ion-icon name="heart" item-end style="margin-bottom: 85px;"></ion-icon> 
-            <h2>Clifton Michell</h2>
-            <ion-grid>
-              <ion-row>
-                <ion-col col-3 style="background:rgba(19, 177, 72, 0.76)">
-                  <h3 >4.0<ion-icon name="star" item-end></ion-icon></h3> 
-                </ion-col>
-                <ion-col col-9>
-                  <h3 style="margin-top:10px">ID:</h3>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-            <p style="text-decoration-color: dimgray">101 Avenue, Seattle, WA 98121 USA</p>
-          </ion-item>
-          <ion-item>
-              <ion-avatar item-start>
-                  <img src="assets/imgs/avatar.png">
-              </ion-avatar>
-               <ion-icon name="heart" item-end style="margin-bottom: 85px;"></ion-icon> 
-              <h2>Colitta Bridger</h2>
-              <ion-grid>
-                <ion-row>
-                  <ion-col col-3 style="background:rgba(19, 177, 72, 0.76)">
-                    <h3 >4.5<ion-icon name="star" item-end></ion-icon></h3> 
-                  </ion-col>
-                  <ion-col col-9>
-                    <h3 style="margin-top:10px">ID:</h3>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-              <p style="text-decoration-color: dimgray">5th Ave #3200, Seattle, WA 98104 USA</p>
-            </ion-item>
-            <ion-item>
-                <ion-avatar item-start>
-                    <img src="assets/imgs/avatar.png">
-                </ion-avatar>
-                 <ion-icon name="heart" item-end style="margin-bottom: 85px;"></ion-icon> 
-                <h2>Gertrudis Currey</h2>
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-3 style="background:rgba(19, 177, 72, 0.76)">
-                      <h3 >5.0<ion-icon name="star" item-end></ion-icon></h3> 
-                    </ion-col>
-                    <ion-col col-9>
-                      <h3 style="margin-top:10px">ID:</h3>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-                <p style="text-decoration-color: dimgray">181 IB, SeaTac Int,Seattle (WA), USA</p>
-              </ion-item>
-              <ion-item>
-                  <ion-avatar item-start>
-                      <img src="assets/imgs/avatar.png">
-                  </ion-avatar>
-                   <ion-icon name="heart" item-end style="margin-bottom: 85px;"></ion-icon> 
-                  <h2>Kenneth Sturm</h2>
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col col-3 style="background:rgba(19, 177, 72, 0.76)">
-                        <h3 >3.5<ion-icon name="star" item-end></ion-icon></h3> 
-                      </ion-col>
-                      <ion-col col-9>
-                        <h3 style="margin-top:10px">ID:</h3>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                  <p style="text-decoration-color: dimgray">101 Avenue, Seattle, WA 98121 USA</p>
-                </ion-item>
-                <ion-item>
-                    <ion-avatar item-start>
-                        <img src="assets/imgs/avatar.png">
-                    </ion-avatar>
-                     <ion-icon name="heart" item-end style="margin-bottom: 85px;"></ion-icon> 
-                    <h2>Florine Noakes</h2>
-                    <ion-grid>
-                      <ion-row>
-                        <ion-col col-3 style="background:rgba(19, 177, 72, 0.76)">
-                          <h3 >4.0<ion-icon name="star" item-end></ion-icon></h3> 
-                        </ion-col>
-                        <ion-col col-9>
-                          <h3 style="margin-top:10px">ID:</h3>
-                        </ion-col>
-                      </ion-row>
-                    </ion-grid>
-                    <p style="text-decoration-color: dimgray">101 Avenue, Seattle, WA 98121 USA</p>
-                  </ion-item>
-    
+    <ion-item *ngFor = "let item of my_item">
+      <ion-avatar item-start style="margin:0px;">
+          <img src="{{item.image}}" full style="width: 80px; height: 80px; border-radius: 0%;">
+      </ion-avatar>
+      <ion-icon name="heart" item-end style="margin-bottom: 80px;"></ion-icon> 
+      <h2>{{item.name}}</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3 style="background:rgba(19, 177, 72, 0.76); margin-left: ">
+            <h3 >{{item.rating}}<ion-icon name="star" item-end></ion-icon></h3> 
+          </ion-col>
+          <ion-col col-9>
+            <h3 style="margin-top:10px">{{item.id}}</h3>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <p style="text-decoration-color: dimgray">{{item.address}}</p>
+    </ion-item>
   </ion-list>
-  </ion-content>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading More Vendor's Profile">
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
   

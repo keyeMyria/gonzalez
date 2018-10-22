@@ -21,5 +21,6 @@ export class VendorPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad VendorPage');
   }
+  
 
 }

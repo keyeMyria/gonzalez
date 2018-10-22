@@ -96,4 +96,5 @@
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
     <plugin name="cordova-plugin-buildinfo" spec="^2.0.2" />
     <plugin name="cordova-universal-links-plugin" spec="git+https://github.com/nordnet/cordova-universal-links-plugin.git" />
+    <engine name="android" spec="7.0.0" />
 </widget>
