@@ -1,6 +1,6 @@
-import { Component, Input, ViewChild} from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -11,13 +11,8 @@ export class ProfilePage {
 
   profileForm: FormGroup;
   public flag: boolean;
-  public isUserName: boolean;
-  public isEmail: boolean;
-  public isContact: boolean;
-  public isNationality: boolean;
-  public isAddress: boolean;
+  public isEnabled: boolean;
   public buttonText: string;
-
   public user: any;
 
   constructor(public navCtrl: NavController, 
@@ -28,11 +23,7 @@ export class ProfilePage {
     this.user = data;
     // Disbaled all input fields
     this.flag = false;
-    this.isUserName = true;
-    this.isEmail = true;
-    this.isContact = true;
-    this.isNationality = true;
-    this.isAddress = true;
+    this.isEnabled = true;
     this.profileForm = new FormGroup({
       username: new FormControl({value:true}),
       email: new FormControl({value:true}),
@@ -46,13 +37,6 @@ export class ProfilePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-    // this.profileForm = new FormGroup({
-    //   username: new FormControl({value:' ', isDisbaled: true}),
-    //   email: new FormControl({value:' ', isDisbaled: true}),
-    //   Contact: new FormControl({value:' ', isDisbaled: true}),
-    //   Nationality: new FormControl({value:' ', isDisbaled: true}),
-    //   Address: new FormControl({value:' ', isDisbaled: true}), 
-    // })
     
   }
 
@@ -61,24 +45,15 @@ export class ProfilePage {
     if(this.flag){// Save Button
       // Disbaled all input fields  
       this.flag = false;
-      this.isUserName = true;
-      this.isEmail = true;
-      this.isContact = true;
-      this.isNationality = true;
-      this.isAddress = true;
+      this.isEnabled = true;
       this.buttonText = "Edit";
     }
     else{// Edit Button
       //Enabled all inputs
       // Button text change from edit to save
       this.flag = true;
-      this.isUserName = false;
-      this.isEmail = false;
-      this.isContact = false;
-      this.isNationality = false;
-      this.isAddress = false;
+      this.isEnabled = false;
       this.buttonText = "Save";
-
     }
   }
 }

@@ -1,3 +1,43 @@
-page-my-favorites {
 
+.favorites_page{
+    .favorite_loading{
+        margin-top: 20px;
+    }
+    ion-card{
+        width: 100%;
+        padding: 0px;
+        margin: 0px!important;
+        padding-right: 0px!important;
+    }
+    ion-avatar{
+        margin-left: 5px;        
+    }
+    ion-item{
+        margin: 0px;
+        padding: 0px;
+    }
+    ion-grid{
+        margin: 0px!important;
+        padding: 0px!important;
+    }
+    ion-row{
+        margin: 0px!important;
+        padding: 0px!important;
+    }
+    ion-col{
+        margin: 0px!important;
+        padding: 0px!important;
+    }
+    .rating{
+        margin-top: 3px;
+        width:100%;
+        background: map-get($colors, main_bg);
+        border-radius: 3px;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 16px;
+        ion-icon{
+            margin-left: 10px;
+        }
+    }
 }

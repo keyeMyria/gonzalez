@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ViewChild} from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Validators, FormGroup, FormControl } from '@angular/forms';

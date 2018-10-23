@@ -24,7 +24,7 @@ export class ChangepasswordPage {
               public app: App) {
 
       const data = JSON.parse(localStorage.getItem("user"));
-      this.user = data.user;
+      this.user = data;
       
       console.log(this.user);
       console.log(this.user.email);

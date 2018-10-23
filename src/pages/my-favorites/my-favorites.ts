@@ -1,16 +1,11 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { VendorPage } from '../vendor/vendor';
 
-/**
- * Generated class for the MyFavoritesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+declare var navigator;
 @IonicPage()
 @Component({
   selector: 'page-my-favorites',
@@ -18,14 +13,18 @@ import { Observable } from 'rxjs';
 })
 export class MyFavoritesPage {
 
+  hideMe:boolean=true;
   items: Observable<any[]>
-  // my_item: Observable<any[]>
   public user: any;
   my_item: any;
+  favorites: any = [];
+  upper: number = 5.000;
+  lower: number = 4.800;
 
   constructor(public navCtrl: NavController,
               public ref: ChangeDetectorRef,
               public fire: AngularFireAuth,  
+              public alertCtrl: AlertController,
               public loadingCtrl: LoadingController,
               private db: AngularFireDatabase, 
               public navParams: NavParams) {
@@ -35,45 +34,120 @@ export class MyFavoritesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyFavoritesPage');
 
-    let loading = this.loadingCtrl.create({
-    content: 'Loading Vendors.<br/>Please wait...'
-    });
-    loading.present();
-    this.ref.detectChanges();
+    console.log("Favorite Size: " + this.favorites.length);
+    if(navigator.onLine){
+      this.loadMore();
+      this.hideMe = false;
+    }
+    else{
+      this.showAlert("", "No Internet Connection Found.\nConnect to a network and try again.")
+    }
+  }
 
-    this.items = this.db.list('/Vendors').valueChanges();//.subscribe(res => {
-
-    console.log("data: " + JSON.stringify(this.items));
-
+  loadMore(){
+    this.hideMe = true;
+    this.my_item = [];
+    this.items = this.db.list('/Vendors', ref => ref.orderByChild('rating').startAt(this.lower).endAt(this.upper)).valueChanges();    
     this.items.subscribe( (data) => {
       console.log("Data " + JSON.stringify(data));
       this.my_item = JSON.parse(JSON.stringify(data));
-      // let d = JSON.parse(JSON.stringify(data));
-      // for(let i=0; i< d.length; i++){
-      //   this.my_item.push(d[i]);
-      // }
-      // this.my_item.push(data);
-
+      this.my_item = this.my_item.reverse();
+      for(let i of this.my_item){
+        this.favorites.push(i);
+      }
+      this.hideMe = false;
       this.ref.detectChanges();
-      loading.dismiss();
+      let count = this.favorites.length;
+      console.log("Favorite Size: " + this.favorites.length);
+      if(count < 5 ){
+        this.upper = this.lower - 0.001; 
+        this.lower -= 0.3;
+        this.loadMore();
+      }
     }, (err) => {
-      loading.dismiss();
+      this.hideMe = false;
       this.ref.detectChanges();
       console.log("Data: " + JSON.stringify("Error Reading " + err));
     }) 
   }
 
-  loadMoreData(infiniteScroll){
-    this.items = this.db.list('/Vendors').valueChanges();//.subscribe(res => {
-      console.log("data: " + JSON.stringify(this.items));  
+  loadMoreData(infiniteScroll, load_count: number){
+    console.log("Load Count: " + load_count);
+    if(load_count == 0){
+      infiniteScroll.complete();
+      return;
+    }
+    this.my_item = [];
+    this.upper = this.lower - 0.001; 
+    this.lower -= 0.3;
+    this.items = this.db.list('/Vendors', ref => ref.orderByChild('rating').startAt(this.lower).endAt(this.upper)).valueChanges();    
+    this.items.subscribe( (data) => {
+      console.log("Data " + JSON.stringify(data));
+      this.my_item = JSON.parse(JSON.stringify(data));
+      this.my_item = this.my_item.reverse();
+      for(let i of this.my_item){
+        this.favorites.push(i);
+      }
+      infiniteScroll.complete();
+      this.ref.detectChanges();
+      let new_size = this.my_item.length;
+      console.log("New Loaded List Size: " + this.my_item.length);
+      if(new_size < 5){
+        this.loadMoreData(infiniteScroll, load_count-1);
+      }
+    }, (err) => {
+      infiniteScroll.complete();
+      this.ref.detectChanges();
+      console.log("Data: " + JSON.stringify("Error Reading " + err));
+    }) 
+  }
+
+  doRefresh(refresher) {
+    if(navigator.onLine){
+      this.favorites = null;
+      this.favorites = [];
+      this.my_item = [];
+      this.upper = 5.000;
+      this.lower = 4.800;
+      this.items = this.db.list('/Vendors', ref => ref.orderByChild('rating').startAt(this.lower).endAt(this.upper)).valueChanges();    
       this.items.subscribe( (data) => {
         console.log("Data " + JSON.stringify(data));
-        infiniteScroll.complete();
+        this.my_item = JSON.parse(JSON.stringify(data));
+        this.my_item = this.my_item.reverse();
+        for(let i of this.my_item){
+          this.favorites.push(i);
+        }
+        refresher.complete();
         this.ref.detectChanges();
+        let count = this.favorites.length;
+        console.log("Favorite Size: " + this.favorites.length);
+        if(count < 5 ){
+          this.upper = this.lower - 0.001; 
+          this.lower -= 0.3;
+          this.loadMore();
+        }
       }, (err) => {
-        infiniteScroll.complete();
+        refresher.complete();
         this.ref.detectChanges();
         console.log("Data: " + JSON.stringify("Error Reading " + err));
       }) 
+    }
+    else{
+      this.showAlert("", "No Internet Connection Found.\nConnect to a network and try again.")
+    }
+  }
+
+  onItemClick(item: any){
+    console.log(JSON.stringify(item));
+    this.navCtrl.push(VendorPage, {vendor: item});
+  }
+
+  showAlert(subject:string, error:string) {
+    let alert = this.alertCtrl.create({
+      title: subject,
+      subTitle: error,
+      buttons: ['OKAY']
+    });
+    alert.present();
   }
 }

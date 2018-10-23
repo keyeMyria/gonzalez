@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { SignUpPage } from '../sign-up/sign-up';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { AlertController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainPage } from '../main/main';
 // import { Profile} from '../Profile/Profile';
 // import { ProfilePage } from '../pages/profile/profile';
 
 
-import { AngularFireDatabase, AngularFireObject} from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 declare var navigator;  
 @Component({

@@ -6,29 +6,57 @@
 </ion-header>
   
   
-  <ion-content>
+<ion-content text-center class="favorites_page">
+  <ion-spinner *ngIf="hideMe" name="bubbles" class="favorite_loading"></ion-spinner>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="refresh"
+      pullingText="Refresh My Favorites"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+      
   <ion-list>
-    <ion-item *ngFor = "let item of my_item">
-      <ion-avatar item-start style="margin:0px;">
-          <img src="{{item.image}}" full style="width: 80px; height: 80px; border-radius: 0%;">
-      </ion-avatar>
-      <ion-icon name="heart" item-end style="margin-bottom: 80px;"></ion-icon> 
-      <h2>{{item.name}}</h2>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3 style="background:rgba(19, 177, 72, 0.76); margin-left: ">
-            <h3 >{{item.rating}}<ion-icon name="star" item-end></ion-icon></h3> 
-          </ion-col>
-          <ion-col col-9>
-            <h3 style="margin-top:10px">{{item.id}}</h3>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <p style="text-decoration-color: dimgray">{{item.address}}</p>
+    <ion-item *ngFor = "let item of favorites" (click)="onItemClick(item)" style="padding-bottom: 2px;margin-bottom:2px;">
+      <ion-card>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4>
+              <ion-avatar>
+                  <img src="{{item.image}}" full style="border-radius: 0%;width:140px; height:100px;">
+              </ion-avatar>
+            </ion-col>
+            <ion-col col-8>
+              <ion-item style="margin-left: 10px;">
+                <ion-icon name="heart" item-end style="position: fixed; top:0; right:10px;color: #D35400;"></ion-icon> 
+                <h2 style="font-size: 18px;text-transform: capitalize;font-weight: bold;">{{item.name}}</h2>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-4 style="padding:0px!important;">
+                      <div class="rating">
+                        <h3 style="margin-left:8px;color:#FFFFFF;">{{item.rating}}<ion-icon name="star" item-end></ion-icon></h3> 
+                      </div>
+                    </ion-col>
+                    <ion-col col-8 text-center style="padding:0px!important;">
+                      <h3 style="color: #7EA515;margin-top:11px;font-size: 17px;font-weight: bold;">ID: {{item.id}}</h3>
+                    </ion-col>
+                    <ion-col col-12>
+                      <h3 style="text-transform: capitalize;">{{item.address}}</h3>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>          
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-card>
     </ion-item>
   </ion-list>
 
-  <ion-infinite-scroll (ionInfinite)="loadMoreData($event)">
+  <ion-infinite-scroll (ionInfinite)="loadMoreData($event, 4)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading More Vendor's Profile">
 
     </ion-infinite-scroll-content>

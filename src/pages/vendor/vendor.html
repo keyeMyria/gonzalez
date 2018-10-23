@@ -1,79 +1,103 @@
-
 <ion-header>
+  <ion-navbar color="primary">
+    <ion-title style="text-transform: capitalize;">{{item.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+  
+<ion-content class="vendor_profile">
+  <ion-list>
+    <ion-item no-lines class="mp_1">
+      <ion-grid class="mp_1">
+        <ion-row class="no_mp">
+          <ion-col col-3 class="no_mp">
+            <ion-avatar>
+                <img src="{{item.image}}" full style="border-radius: 0%;width:140px; height:80px;">
+            </ion-avatar>
+          </ion-col>
+          <ion-col col-9 class="no_mp">
+            <ion-row class="mp_1">
+              <ion-col col-8 class="no_mp">
+                <h6 class="name">{{item.name}}</h6>
+                <h6 class="id">ID: {{item.id}}</h6>
+              </ion-col>
+              <ion-col col-4 class="no_mp">
+                <h6 class="hour_rate">$20.00/hr</h6>
+              </ion-col>
+              <ion-col col-12 class="no_mp">
+                <h6 class="address">{{item.address}}</h6>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
 
-    <ion-navbar>
-      <ion-title>vendor</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content>
-    <ion-list>
-      <ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-2 >
-                      <img src="assets/imgs/avatar.png" >
-            </ion-col>
-            <ion-col col-7 >
-            <h3>Florine Noakes</h3>
-              <h3>ID:1034823356</h3>
-              <p>101 Avenue, Seattle, WA 98121 USA</p>
-            </ion-col>
-            <ion-col col-3  >
-                 <h6 style="background:orangered">$20.00/hr</h6>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item style="background: darkgrey;"></ion-item>
-      <ion-item>
-        <h3 style="text-decoration-color:rgba(32, 201, 26, 0.74)">PERSONAL</h3>
-      </ion-item>
-      <ion-item>
-          <ion-label fixed>Gender</ion-label>
-          <ion-input type="gender" value=""></ion-input>
-      
+    <ion-item no-lines class="vendor_divider">
     </ion-item>
-    <ion-item>
+
+    <ion-item no-lines class="no_mp">
+      <h3 class="vendor_heading">PERSONAL</h3>
+    </ion-item>
+
+    <ion-item class="mp_1" no-lines>
+        <ion-label fixed>Gender</ion-label>
+        <ion-input type="gender" value="{{item.name}}" disabled={{this.isEnabled}}></ion-input>
+    </ion-item>
+    <ion-item class="mp_1" no-lines>
         <ion-label fixed>Age</ion-label>
-        <ion-input type="age" value=""></ion-input>
+        <ion-input type="age" value="{{item.name}}" disabled={{this.isEnabled}}></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item class="mp_1" no-lines>
         <ion-label fixed>Nationality</ion-label>
-        <ion-input type="nat" value=""></ion-input>
-  </ion-item>
-  <ion-item>
-      <ion-label fixed>Language</ion-label>
-      <ion-input type="lang" value=""></ion-input>
-  </ion-item>
-  <ion-item>
-      <ion-label fixed>Marital Status</ion-label>
-      <ion-input type="status" value=""></ion-input>
-  </ion-item>
-  <ion-item style="background: darkgrey;"></ion-item>
-      <ion-item>
-        <h3 style="text-decoration-color:rgba(32, 201, 26, 0.74)">QUALIFICAIONS</h3>
-      </ion-item>
-  <ion-item>
+        <ion-input type="nat" value="{{item.name}}" disabled={{this.isEnabled}}></ion-input>
+    </ion-item>
+    <ion-item class="mp_1" no-lines>
+        <ion-label fixed>Language</ion-label>
+        <ion-input type="lang" value="{{item.name}}" disabled={{this.isEnabled}}></ion-input>
+    </ion-item>
+    <ion-item class="mp_1" no-lines>
+        <ion-label fixed>Marital Status</ion-label>
+        <ion-input type="status" value="{{item.name}}" disabled={{this.isEnabled}}></ion-input>
+    </ion-item>
+
+    <ion-item no-lines class="vendor_divider">
+    </ion-item>
+
+    <ion-item no-lines class="no_mp">
+      <h3 class="vendor_heading">QUALIFICATIONS</h3>
+    </ion-item>
+
+    <ion-item class="mp_1" no-lines>
       <ion-label fixed>Experiences</ion-label>
-      <ion-input type="gender" value=""></ion-input>
-  
-  </ion-item>
-  <ion-item>
-    <ion-label fixed>Certification</ion-label>
-    <ion-input type="age" value=""></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label fixed>References</ion-label>
-    <ion-input type="nat" value=""></ion-input>
-  </ion-item>
-  <ion-item>
-  <ion-label fixed>Others</ion-label>
-  <ion-input type="lang" value=""></ion-input>
-  </ion-item>
-    
-      </ion-list>
-  </ion-content>
+      <ion-input type="gender" value="{{item.name}}" disabled={{this.isEnabled}}></ion-input>
+    </ion-item>
+    <ion-item class="mp_1" no-lines>
+      <ion-label fixed>Certification</ion-label>
+      <ion-input type="age" value="{{item.name}}" disabled={{this.isEnabled}}></ion-input>
+    </ion-item>
+    <ion-item class="mp_1" no-lines>
+      <ion-label fixed>References</ion-label>
+      <ion-input type="nat" value="{{item.name}}" disabled={{this.isEnabled}}></ion-input>
+    </ion-item>
+    <ion-item class="mp_1" no-lines>
+      <ion-label fixed>Others</ion-label>
+      <ion-input type="lang" value="{{item.name}}" disabled={{this.isEnabled}}></ion-input>
+    </ion-item>
+
+    <ion-item no-lines class="vendor_divider">
+    </ion-item>
+
+    <ion-item no-lines class="no_mp">
+      <h3 class="vendor_heading">REVIEWS</h3>
+      <ion-icon name="arrow-forward" item-end></ion-icon>
+    </ion-item>
+
+    <ion-item no-lines class="no_mp">
+      <button ion-button full class="fixed_button">HIRE ME</button>
+    </ion-item>
+
+
+      
+  </ion-list>
+</ion-content>
   
