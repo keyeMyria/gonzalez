@@ -11,16 +11,16 @@
     <ion-item no-lines style= "background-color: #AFB0AE;">
       <h4>PROFILE</h4>
     </ion-item>
-    <ion-item no-lines class="account_item">
-      <ion-label (click)="userProfile()">{{this.user.name}}</ion-label>
+    <ion-item no-lines class="account_item" (click)="userProfile()">
+      <ion-label>{{this.user.name}}</ion-label>
       <ion-icon name="arrow-forward" item-end></ion-icon>
     </ion-item>
     <ion-item no-lines>
         <ion-label>Notifications</ion-label>
         <ion-toggle checked="false"></ion-toggle>
     </ion-item>
-    <ion-item no-lines>
-      <ion-label (click)="changePassword()"> Change Password </ion-label>
+    <ion-item no-lines (click)="changePassword()">
+      <ion-label> Change Password </ion-label>
       <ion-icon name="arrow-forward" item-end></ion-icon>
     </ion-item>
 
