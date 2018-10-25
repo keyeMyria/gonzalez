@@ -10,7 +10,6 @@ import { VendersPage } from '../venders/venders';
   templateUrl: 'categories.html',
 })
 export class CategoriesPage {
-
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
@@ -21,55 +20,46 @@ export class CategoriesPage {
     console.log('ionViewDidLoad CategoriesPage');
   }
 
-  babySister(){
-   console.log("venders page loaded");
-   this.navCtrl.push(VendersPage);
+  categoryClicked(cat:string){
+    console.log("Category: " + cat);
+    this.navCtrl.push(VendersPage, {category: cat});
   }
 
-  cleaningServices(){
-    let loading = this.loadingCtrl.create({
-      content: 'User Request.<br/>Please wait...'
-     });
-    loading.present();
-    loading.dismiss();  
-    this.showAlert("Cleaning Services page");
-  }
+  // gardeningServices(){
+  //   let loading = this.loadingCtrl.create({
+  //     content: 'User Request.<br/>Please wait...'
+  //    });
+  //   loading.present();
+  //   loading.dismiss();  
+  //   this.showAlert("Gardening Services page");
+  // }
 
-  gardeningServices(){
-    let loading = this.loadingCtrl.create({
-      content: 'User Request.<br/>Please wait...'
-     });
-    loading.present();
-    loading.dismiss();  
-    this.showAlert("Gardening Services page");
-  }
+  // doctorServices(){
+  //   let loading = this.loadingCtrl.create({
+  //     content: 'User Request.<br/>Please wait...'
+  //    });
+  //   loading.present();
+  //   loading.dismiss();  
+  //   this.showAlert("Doctor & Nurse Services page");
+  // }
 
-  doctorServices(){
-    let loading = this.loadingCtrl.create({
-      content: 'User Request.<br/>Please wait...'
-     });
-    loading.present();
-    loading.dismiss();  
-    this.showAlert("Doctor & Nurse Services page");
-  }
+  // blumberServices(){
+  //   let loading = this.loadingCtrl.create({
+  //     content: 'User Request.<br/>Please wait...'
+  //    });
+  //   loading.present();
+  //   loading.dismiss();  
+  //   this.showAlert("Blumber Services page");
+  // }
 
-  blumberServices(){
-    let loading = this.loadingCtrl.create({
-      content: 'User Request.<br/>Please wait...'
-     });
-    loading.present();
-    loading.dismiss();  
-    this.showAlert("Blumber Services page");
-  }
-
-  laundryServices(){
-    let loading = this.loadingCtrl.create({
-      content: 'User Request.<br/>Please wait...'
-     });
-    loading.present();
-    loading.dismiss();  
-    this.showAlert("Laundry Services page");
-  }
+  // laundryServices(){
+  //   let loading = this.loadingCtrl.create({
+  //     content: 'User Request.<br/>Please wait...'
+  //    });
+  //   loading.present();
+  //   loading.dismiss();  
+  //   this.showAlert("Laundry Services page");
+  // }
 
   showAlert(subject:string) {
     let alert = this.alertCtrl.create({

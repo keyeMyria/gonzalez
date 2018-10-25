@@ -21,7 +21,7 @@ my_items:any;
 venders:any=[];
 upper: number=5.000;
 lower:number= 4.800;
-
+category: string;
 constructor(public navCtrl: NavController,
   public ref: ChangeDetectorRef,
     public fire: AngularFireAuth,  
@@ -29,11 +29,13 @@ constructor(public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     private db: AngularFireDatabase, 
      public navParams: NavParams) {
+  this.category = navParams.get("category");
+  console.log('ionViewDidLoad VendersPage : ' + this.category);  
 }
 
 ionViewDidLoad() {
   console.log('ionViewDidLoad VendersPage');
-  //console.log("Vender Size: " + this.vender.length);
+ console.log("Vender Size: " + this.venders.length);
   if(navigator.onLine){
     this.loadMore();
     this.hideme=false;
