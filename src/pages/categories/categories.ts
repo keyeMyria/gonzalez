@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { VendersPage } from '../venders/venders';
 
 
 /**
@@ -28,12 +29,8 @@ export class CategoriesPage {
   }
 
   babySister(){
-    let loading = this.loadingCtrl.create({
-      content: 'User Request.<br/>Please wait...'
-     });
-    loading.present();
-    loading.dismiss();  
-    this.showAlert("Baby Sister page");
+   console.log("venders page loaded");
+   this.navCtrl.push(VendersPage);
   }
 
   cleaningServices(){

@@ -45,6 +45,7 @@ export class MyFavoritesPage {
   }
 
   loadMore(){
+    console.log("Load More Function Started");
     this.hideMe = true;
     this.my_item = [];
     this.items = this.db.list('/Vendors', ref => ref.orderByChild('rating').startAt(this.lower).endAt(this.upper)).valueChanges();    
