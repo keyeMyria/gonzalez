@@ -26,6 +26,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire'
 import { VendersPage } from '../pages/venders/venders';
+import { TestPage } from '../pages/test/test';
 
 var config = {
   apiKey: "AIzaSyBouFPqwMCAb33Bf2I5fzNDDJikUBkUTE0",
@@ -52,7 +53,8 @@ var config = {
     ExperiencePage,
     ReviewsPage, 
     VendorPage,
-    VendersPage
+    VendersPage,
+    TestPage
     ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ var config = {
     ExperiencePage,
     ReviewsPage,
     VendorPage, 
-    VendersPage
+    VendersPage,
+    TestPage
   ],
   providers: [
     StatusBar,    

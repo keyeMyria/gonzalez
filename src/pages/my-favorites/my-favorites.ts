@@ -40,12 +40,12 @@ export class MyFavoritesPage {
       this.hideMe = false;
     }
     else{
+      this.hideMe = false;
       this.showAlert("", "No Internet Connection Found.\nConnect to a network and try again.")
     }
   }
 
   loadMore(){
-    console.log("Load More Function Started");
     this.hideMe = true;
     this.my_item = [];
     this.items = this.db.list('/Vendors', ref => ref.orderByChild('rating').startAt(this.lower).endAt(this.upper)).valueChanges();    
