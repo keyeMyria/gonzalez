@@ -21,7 +21,8 @@ export class SignUpPage {
     image: "",
     contact: "",
     nationality: "",
-    address: ""
+    address: "",
+    id: ""
   }
   constructor(private fire: AngularFireAuth,
               private db: AngularFireDatabase, 
@@ -35,11 +36,6 @@ export class SignUpPage {
       email: new FormControl('', [Validators.required, Validators.pattern(".+\@.+\..+")]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     })
-
-    // let dataList = this.db.list('userData');
-    // dataList.snapshotChanges().map(changes => {
-    //   return changes.map(c => ({ key: c.payload.key, ...c.payload.val()}));
-    // });
   }
 
   ionViewDidLoad() {
@@ -82,8 +78,9 @@ export class SignUpPage {
               id = id.replace("@", "-");
               id = id.replace(/\./g, "_");
               console.log("ID: " + id);
+              this.userData.id = id;
 
-              this.db.object(`Users/${id}`).set(this.userData).then( res=> {
+              this.db.object(`Users/${this.userData.id}`).set(this.userData).then( res=> {
                 loading.dismiss();
                 localStorage.clear();
                 localStorage.setItem("user", JSON.stringify(this.userData));

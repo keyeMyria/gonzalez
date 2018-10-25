@@ -29,15 +29,15 @@
         </ion-item>
             <ion-item>
             <ion-label fixed>Contact</ion-label>
-            <ion-input type="contact" formControlName="Contact" disabled={{this.isEnabled}} value=""></ion-input>
+            <ion-input type="number" formControlName="contact" disabled={{this.isEnabled}} value="{{this.user.contact}}"></ion-input>
         </ion-item>
          <ion-item>
             <ion-label fixed>Nationality</ion-label>
-            <ion-input type="nat" formControlName="Nationality" disabled={{this.isEnabled}} value=""></ion-input>
+            <ion-input type="text" formControlName="nationality" disabled={{this.isEnabled}} value="{{this.user.nationality}}"></ion-input>
          </ion-item>
          <ion-item>
             <ion-label fixed>Address</ion-label>
-            <ion-input type="address" formControlName="Address" disabled={{this.isEnabled}} value=""></ion-input>
+            <ion-input type="address" formControlName="address" disabled={{this.isEnabled}} value="{{this.user.address}}"></ion-input>
          </ion-item>
         </ion-list>
     </form>

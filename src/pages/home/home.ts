@@ -7,10 +7,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainPage } from '../main/main';
-// import { Profile} from '../Profile/Profile';
-// import { ProfilePage } from '../pages/profile/profile';
-
-
 import { AngularFireDatabase } from 'angularfire2/database';
 
 declare var navigator;  
@@ -28,7 +24,8 @@ export class HomePage {
     image: "",
     contact: "",
     nationality: "",
-    address: ""
+    address: "",
+    id: ""
   }
 
   constructor(public fire: AngularFireAuth, 
@@ -52,9 +49,6 @@ export class HomePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
     this.statusBar.backgroundColorByHexString("#6b9423");
-    if(localStorage.getItem("user")){
-      this.navCtrl.setRoot(MainPage);
-    }
   }
 
   loginWithFacebook(){
@@ -74,13 +68,13 @@ export class HomePage {
             id = id.replace("@", "-");
             id = id.replace(/\./g, "_");
             console.log("ID: " + id);
-
-            this.db.object(`Users/${id}`).valueChanges().subscribe(res => {
+            this.userData.id = id;
+            this.db.object(`Users/${this.userData.id}`).valueChanges().subscribe(res => {
               if(res == null){
                   this.userData.email = data.user.email;
                   this.userData.name = data.user.displayName;
                   this.userData.image = data.user.photoURL;
-                  this.db.object(`Users/${id}`).set(this.userData)
+                  this.db.object(`Users/${this.userData.id}`).set(this.userData)
                   .then( res => {
                     if(loading.present())
                       loading.dismiss();
@@ -210,13 +204,14 @@ export class HomePage {
           id = id.replace("@", "-");
           id = id.replace(/\./g, "_");
           console.log("ID: " + id);
+          this.userData.id  = id;
 
-          this.db.object(`Users/${id}`).valueChanges().subscribe(res => {
+          this.db.object(`Users/${this.userData.id}`).valueChanges().subscribe(res => {
             if(res == null){
                 this.userData.email = data.user.email;
                 this.userData.name = data.user.displayName;
                 this.userData.image = data.user.photoURL;
-                this.db.object(`Users/${id}`).set(this.userData).then( res=> {
+                this.db.object(`Users/${this.userData.id}`).set(this.userData).then( res=> {
                   loading.dismiss();
                   localStorage.clear();
                   localStorage.setItem("user", JSON.stringify(this.userData));
