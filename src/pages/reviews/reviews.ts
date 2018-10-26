@@ -3,16 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import firebase from 'firebase';
-// import { DatePipe } from '@angular/common'
-// import { Moment } from 'moment';
+import { Events } from 'ionic-angular';
 import moment from 'moment';
-/**
- * Generated class for the ReviewsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -31,14 +23,15 @@ export class ReviewsPage {
 
   constructor(public navCtrl: NavController,
               public ref: ChangeDetectorRef,
-              // public datepipe: DatePipe,
-              // public moment: Moment,
               public fire: AngularFireAuth,  
+              public events: Events,
               public alertCtrl: AlertController,
               public loadingCtrl: LoadingController,
               private db: AngularFireDatabase, 
               public navParams: NavParams) {
     this.vendor = JSON.parse(JSON.stringify(navParams.get("vendor")));
+
+    
   }
 
   ionViewDidLoad() {
@@ -63,8 +56,9 @@ export class ReviewsPage {
       this.my_item = JSON.parse(JSON.stringify(data));
       this.my_item = this.my_item.reverse();
       for(let i of this.my_item){
-        let time = moment(i.created_at).format('MMM DD, YYYY HH:MM');
-        console.log("TimeStamp: " + JSON.stringify(i.created_at) + " Time is: " + JSON.stringify(time));
+        let time = moment(i.created_at).format('MMMM DD, YYYY');//, h:mm:ss a');
+        let d = new Date(i.created_at);
+        console.log("TimeStamp: " + JSON.stringify(i.created_at) + " Time is: " + JSON.stringify(time) + " Date: " + JSON.stringify(d));
         let r = {
           name: "",
           rating: 0,
@@ -72,6 +66,11 @@ export class ReviewsPage {
         }
         r.name = i.name;
         r.rating = i.rating;
+
+        console.log("Rating: " + JSON.stringify(r.rating));
+        // events.subscribe('star-rating:changed', (starRating) => {console.log(starRating)});
+        //    console.log("Events: " + JSON.stringify(events));
+        //    Math.round(parseFloat(ratin))
         r.time = time;
         this.reviews.push(r);
         

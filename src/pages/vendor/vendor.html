@@ -91,6 +91,21 @@
       <h3 class="vendor_heading">REVIEWS</h3>
       <ion-icon name="arrow-forward" item-end></ion-icon>
     </ion-item>
+    <ion-item>
+      <ion-row padding text-center>
+        <ion-col col-12>
+          <ionic3-star-rating
+            (ngModelChange)="onModelChange($event)"
+            activeIcon = "star"
+            defaultIcon = "star-outline"
+            activeColor = "#CA6F1E" 
+            defaultColor = "#AEB6BF"
+            readonly="true"
+            [rating]="item.rating">
+          </ionic3-star-rating> 
+        </ion-col>
+      </ion-row>
+    </ion-item>
   </ion-list>
 </ion-content>
 <ion-footer no-lines class="no_mp">

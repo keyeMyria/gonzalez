@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-
+import { StarRatingModule } from 'ionic3-star-rating';
 import { MyApp } from './app.component';
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -20,15 +20,16 @@ import { ExperiencePage } from '../pages/experience/experience';
 import { ProfilePage } from '../pages/profile/profile';
 import { ReviewsPage } from '../pages/reviews/reviews';
 import { VendorPage } from '../pages/vendor/vendor';
-import {DummyPage} from '../pages/dummy/dummy';
+import { DummyPage } from '../pages/dummy/dummy';
+import { VendersPage } from '../pages/venders/venders';
+import { TestPage } from '../pages/test/test';
+import { EmpregistrationPage } from '../pages/empregistration/empregistration';
+
 
 // Libraries
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire'
-import { VendersPage } from '../pages/venders/venders';
-import { TestPage } from '../pages/test/test';
-import { EmpregistrationPage } from '../pages/empregistration/empregistration';
 
 var config = {
   apiKey: "AIzaSyBouFPqwMCAb33Bf2I5fzNDDJikUBkUTE0",
@@ -65,7 +66,8 @@ var config = {
     IonicModule.forRoot(MyApp),
     AngularFireAuthModule,
     AngularFireModule.initializeApp(config),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    StarRatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
