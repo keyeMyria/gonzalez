@@ -5,7 +5,7 @@ import { Validators, FormGroup, FormControl, EmailValidator } from '@angular/for
 import { AlertController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { stringify } from '@angular/compiler/src/util';
+import { SignUpPage } from '../sign-up/sign-up';
 
 /**
  * Generated class for the EmpregistrationPage page.
@@ -187,6 +187,17 @@ export class EmpregistrationPage {
         buttons: ['OKAY']
       });
       alert.present();
+    }
+
+    gotToSignIn() {
+      console.log("SignIn box is clicked");
+      this.navCtrl.popToRoot();
+    }
+
+    gotToSignUpUser(){
+      console.log("Signup box is clicked");
+      this.navCtrl.popToRoot();
+      this.navCtrl.push(SignUpPage); 
     }
   }
   

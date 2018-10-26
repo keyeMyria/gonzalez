@@ -62,13 +62,17 @@
       <ion-col cols-12 >
         <ion-list>
           <ion-row>
-            <ion-label class="forgot_password" (click)="gotToSignUp()">
-              Don't hava an Account? <u><b>Sign Up</b></u>
+            <ion-label class="forgot_password" text-center>
+              Don't hava an Account?<br>
+              <u (click)="gotToSignUp()"><b>Sign Up as User</b></u>
+              <br><br>
+              <u (click)="gotToSignUpEmployer()"><b>Sign Up as Employer</b></u>
             </ion-label>
           </ion-row>
         </ion-list>
       </ion-col>
     </ion-row>
+
     
   </ion-grid>
 

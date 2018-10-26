@@ -68,6 +68,10 @@ export class ProfilePage {
         this.userData.id = this.user.id;
         this.userData.image = this.user.image;
 
+        this.userData.name = this.toUpper(this.userData.name);
+        this.userData.nationality = this.toUpper(this.userData.nationality);
+        this.userData.address = this.toUpper(this.userData.address);
+
         console.log("Email: " + this.userData.email);
         console.log("Username: " + this.userData.name);
         console.log("Contact: " + this.userData.contact);
@@ -152,6 +156,14 @@ export class ProfilePage {
       error = error + "*Contact Number is required.<br/>";
     }
     return error;
+  }
+
+  toUpper(str:string){
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' ');
   }
 
 }

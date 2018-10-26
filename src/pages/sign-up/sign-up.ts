@@ -5,6 +5,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { EmpregistrationPage } from '../empregistration/empregistration';
 
 declare var navigator;
 @IonicPage()
@@ -63,6 +64,8 @@ export class SignUpPage {
 
         loading.present();
         // Make Server Call
+
+        this.userData.name = this.toUpper(this.userData.name);
         this.fire.auth.createUserWithEmailAndPassword(_email, _pass)
         .then( res => {
           console.log("Success: " + JSON.stringify(res));
@@ -155,5 +158,18 @@ export class SignUpPage {
       buttons: ['OKAY']
     });
     alert.present();
+  }
+  toUpper(str:string){
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' ');
+  }
+
+  gotToSignUpEmployer(){
+    console.log("Signup box is clicked");
+    this.navCtrl.popToRoot();
+    this.navCtrl.push(EmpregistrationPage); 
   }
 }

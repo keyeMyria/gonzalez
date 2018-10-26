@@ -8,6 +8,7 @@ import { auth } from 'firebase/app';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainPage } from '../main/main';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { EmpregistrationPage } from '../empregistration/empregistration';
 
 declare var navigator;  
 @Component({
@@ -72,7 +73,7 @@ export class HomePage {
             this.db.object(`Users/${this.userData.id}`).valueChanges().subscribe(res => {
               if(res == null){
                   this.userData.email = data.user.email;
-                  this.userData.name = data.user.displayName;
+                  this.userData.name = this.toUpper(data.user.displayName);
                   this.userData.image = data.user.photoURL;
                   this.db.object(`Users/${this.userData.id}`).set(this.userData)
                   .then( res => {
@@ -137,7 +138,7 @@ export class HomePage {
       //   this.db.object(`Users/${id}`).valueChanges().subscribe(res => {
       //     if(res == null){
       //         this.userData.email = data.user.email;
-      //         this.userData.name = data.user.displayName;
+      //         this.userData.name = this.toUpper(data.user.displayName);
       //         this.userData.image = data.user.photoURL;
       //         this.db.object(`Users/${id}`).set(this.userData)
       //         .then( res => {
@@ -290,6 +291,18 @@ export class HomePage {
       buttons: ['OKAY']
     });
     alert.present();
+  }
+  toUpper(str:string){
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' ');
+  }
+
+  gotToSignUpEmployer(){
+    console.log("Signup box is clicked");
+    this.navCtrl.push(EmpregistrationPage); 
   }
 
 }

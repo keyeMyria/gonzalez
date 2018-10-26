@@ -114,6 +114,24 @@
             <button ion-button full round padding>Registered</button>
           </ion-col>
         </ion-row>
+
+        <ion-row style="margin-top: 25px;">
+          <ion-col cols-12>
+            <ion-list>
+              <ion-row>
+                <ion-label class="forgot_password" (click)="gotToSignIn()">
+                    Already have an account? <u><b>Sign In</b></u>
+                </ion-label>
+              </ion-row>
+              <ion-row>
+                <ion-label class="forgot_password" (click)="gotToSignUpUser()">
+                  Don't hava an Account? <u><b>Sign Up as User</b></u>
+                </ion-label>
+              </ion-row>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
       </ion-grid>
     </form>
     </ion-row>
