@@ -20,6 +20,7 @@ import { ExperiencePage } from '../pages/experience/experience';
 import { ProfilePage } from '../pages/profile/profile';
 import { ReviewsPage } from '../pages/reviews/reviews';
 import { VendorPage } from '../pages/vendor/vendor';
+import {DummyPage} from '../pages/dummy/dummy';
 
 // Libraries
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -54,7 +55,8 @@ var config = {
     ReviewsPage, 
     VendorPage,
     VendersPage,
-    TestPage
+    TestPage,
+    DummyPage
     ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ var config = {
     ReviewsPage,
     VendorPage, 
     VendersPage,
-    TestPage
+    TestPage,
+   DummyPage
   ],
   providers: [
     StatusBar,    

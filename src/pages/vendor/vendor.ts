@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ReviewsPage } from '../reviews/reviews';
+import { DummyPage } from '../dummy/dummy';
 
 
 @IonicPage()
@@ -13,7 +14,8 @@ export class VendorPage {
   public isEnabled: boolean;
 
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              public modalCtrl:ModalController) {
     let it = navParams.get('vendor');
     console.log("Vendor Page: " + JSON.stringify(it));
     this.item = JSON.parse(JSON.stringify(it));
@@ -33,5 +35,11 @@ export class VendorPage {
   //   console.log(JSON.stringify(item));
   //   this.navCtrl.push(ReviewsPage, {review: item});
   // }
-
+  hireMe(hire: string){
+    console.log("Hire me:" + hire);
+     //this.navCtrl.push(DummyPage,{dummy:hire});
+     let model=this.modalCtrl.create(DummyPage);
+     model.present();
+  }
+ 
 }
