@@ -1,0 +1,121 @@
+<ion-content padding class="home_bg">
+  <ion-grid>
+    <ion-row>
+      <form [formGroup]="registrationform" (ngSubmit) ="Submit()" class="home_form">
+        <ion-grid>
+          <ion-row>
+              <ion-col class="cols my_input" full>
+                  <ion-row>
+                      <ion-icon name="person" item-start></ion-icon>
+                      <ion-input placeholder="Full Name" formControlName="name" type = "text"></ion-input>
+                  </ion-row>
+              </ion-col>
+           </ion-row>
+
+
+          <ion-row>
+            <ion-col class="cols my_input" full>
+              <ion-row>
+                <ion-icon name="person" item-start></ion-icon>
+                <ion-input placeholder ="Email" formControlName="email" type="text"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row>
+            <ion-col class="cols my_input" full>
+              <ion-row>
+                <ion-icon name="person" item-start></ion-icon>
+                <ion-input placeholder ="Password" formControlName="password" type="text"></ion-input>
+              </ion-row>
+            </ion-col>
+         </ion-row>
+
+
+        <ion-row>
+          <ion-col class="cols my_input" full>
+            <ion-row>
+              <ion-icon name="person" item-start></ion-icon>
+              <ion-input placeholder="Address" formControlName="address" type="text"></ion-input>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col class="cols my_input" full>
+            <ion-row>
+              <ion-icon name="person" item-start></ion-icon>
+                <ion-label>Gender</ion-label>
+                <ion-select [(ngModel)]="gender" formControlName="gender">
+                  <ion-option value ="female" selected = "true">Female</ion-option>
+                  <ion-option value ="male">Male</ion-option>
+                </ion-select>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col class="cols my_input" full>
+            <ion-row>
+              <ion-icon name="person" item-start></ion-icon>
+                <ion-label>Age</ion-label>
+                  <ion-select [(ngModel)]="Age" formControlName="age">
+                    <ion-option>18</ion-option>
+                    <ion-option>19</ion-option>
+                    <ion-option>20</ion-option>
+                    <ion-option>21</ion-option>
+                    <ion-option>22</ion-option>
+                    <ion-option>23</ion-option>
+                    <ion-option>24</ion-option>
+                    <ion-option>25</ion-option>
+                    <ion-option>Above 25</ion-option>
+                  </ion-select>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="cols my_input" full>
+            <ion-row>
+              <ion-icon name="person" item-start></ion-icon>
+              <ion-input placeholder="Language" formControlName="language" type="text"></ion-input>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="cols my_input" full>
+            <ion-row>
+              <ion-icon name="person" item-start></ion-icon>
+              <ion-input placeholder="Nationality" formControlName="nationality" type="text"></ion-input>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col class="cols my_input" full>
+            <ion-row>
+              <ion-icon name="person" item-start></ion-icon>
+                <ion-label>Marital-Status</ion-label>
+                  <ion-select [(ngModel)]="Marital-Status" formControlName="maritalstatus">
+                    <ion-option value ="Married" selected = "true">Married</ion-option>
+                    <ion-option value ="UnMarried">UnMarried</ion-option>
+                  </ion-select>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style= "margin-top:50px;">
+          <ion-col cols-12>
+            <button ion-button full round padding>Registered</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    </ion-row>
+  </ion-grid>
+</ion-content>
