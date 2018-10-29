@@ -1,23 +1,21 @@
-<ion-content padding class="home_bg">
+<ion-content padding class="emp_bg">
+  <ion-grid>
+    <ion-row class="logo">
+        <ion-col col-12>
+          <img src="assets/imgs/company_logo.png"/>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-grid>
     <ion-row>
-      <form [formGroup]="registrationform" (ngSubmit) ="Submit()" class="home_form">
+      <form [formGroup]="registrationform" (ngSubmit) ="Submit()" class="emp_form">
         <ion-grid>
-          <ion-row>
-              <ion-col class="cols my_input" full>
-                  <ion-row>
-                      <ion-icon name="person" item-start></ion-icon>
-                      <ion-input placeholder="Full Name" formControlName="name" type = "text"></ion-input>
-                  </ion-row>
-              </ion-col>
-           </ion-row>
-
-
           <ion-row>
             <ion-col class="cols my_input" full>
               <ion-row>
-                <ion-icon name="person" item-start></ion-icon>
-                <ion-input placeholder ="Email" formControlName="email" type="text"></ion-input>
+                  <ion-icon name="person" item-start></ion-icon>
+                  <ion-input placeholder="Full Name" formControlName="name" type="text"></ion-input>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -26,8 +24,18 @@
           <ion-row>
             <ion-col class="cols my_input" full>
               <ion-row>
-                <ion-icon name="person" item-start></ion-icon>
-                <ion-input placeholder ="Password" formControlName="password" type="text"></ion-input>
+                <ion-icon name="mail" item-start></ion-icon>
+                <ion-input placeholder ="Email" formControlName="email" type="email"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row>
+            <ion-col class="cols my_input" full>
+              <ion-row>
+                <ion-icon name="lock" item-start></ion-icon>
+                <ion-input placeholder ="Password" formControlName="password" type="password"></ion-input>
               </ion-row>
             </ion-col>
          </ion-row>
@@ -36,51 +44,16 @@
         <ion-row>
           <ion-col class="cols my_input" full>
             <ion-row>
-              <ion-icon name="person" item-start></ion-icon>
+              <ion-icon name="navigate" item-start></ion-icon>
               <ion-input placeholder="Address" formControlName="address" type="text"></ion-input>
             </ion-row>
           </ion-col>
         </ion-row>
 
-
         <ion-row>
           <ion-col class="cols my_input" full>
             <ion-row>
-              <ion-icon name="person" item-start></ion-icon>
-                <ion-label>Gender</ion-label>
-                <ion-select [(ngModel)]="gender" formControlName="gender">
-                  <ion-option value ="female" selected = "true">Female</ion-option>
-                  <ion-option value ="male">Male</ion-option>
-                </ion-select>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-
-
-        <ion-row>
-          <ion-col class="cols my_input" full>
-            <ion-row>
-              <ion-icon name="person" item-start></ion-icon>
-                <ion-label>Age</ion-label>
-                  <ion-select [(ngModel)]="Age" formControlName="age">
-                    <ion-option>18</ion-option>
-                    <ion-option>19</ion-option>
-                    <ion-option>20</ion-option>
-                    <ion-option>21</ion-option>
-                    <ion-option>22</ion-option>
-                    <ion-option>23</ion-option>
-                    <ion-option>24</ion-option>
-                    <ion-option>25</ion-option>
-                    <ion-option>Above 25</ion-option>
-                  </ion-select>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col class="cols my_input" full>
-            <ion-row>
-              <ion-icon name="person" item-start></ion-icon>
+              <ion-icon name="create" item-start></ion-icon>
               <ion-input placeholder="Language" formControlName="language" type="text"></ion-input>
             </ion-row>
           </ion-col>
@@ -89,33 +62,121 @@
         <ion-row>
           <ion-col class="cols my_input" full>
             <ion-row>
-              <ion-icon name="person" item-start></ion-icon>
+              <ion-icon name="body" item-start></ion-icon>
               <ion-input placeholder="Nationality" formControlName="nationality" type="text"></ion-input>
             </ion-row>
           </ion-col>
         </ion-row>
 
-
         <ion-row>
-          <ion-col class="cols my_input" full>
+          <ion-col col-12 full class="cols my_input">
             <ion-row>
-              <ion-icon name="person" item-start></ion-icon>
-                <ion-label>Marital-Status</ion-label>
-                  <ion-select [(ngModel)]="Marital-Status" formControlName="maritalstatus">
-                    <ion-option value ="Married" selected = "true">Married</ion-option>
-                    <ion-option value ="UnMarried">UnMarried</ion-option>
-                  </ion-select>
+              <ion-col col-5 style="padding-top:18px;">
+                <label>Select Gender</label>
+              </ion-col>
+              <ion-col col-7>
+                <ion-select interface="popover" class="selector" [(ngModel)]="gender" formControlName="gender">
+                  <ion-option value="Female" class="option">Female</ion-option>
+                  <ion-option value="Male" class="option">Male</ion-option>
+                </ion-select>
+              </ion-col>
             </ion-row>
           </ion-col>
         </ion-row>
 
-        <ion-row style= "margin-top:50px;">
-          <ion-col cols-12>
-            <button ion-button full round padding>Registered</button>
+        <ion-row>
+          <ion-col col-12 full class="cols my_input">
+            <ion-row>
+              <ion-col col-5 style="padding-top:18px;">
+                <label>Select Age</label>
+              </ion-col>
+              <ion-col col-7>
+                <ion-select interface="popover" class="selector" [(ngModel)]="Age" formControlName="age">
+                  <ion-option value="18 Years">18 Years</ion-option>
+                  <ion-option value="19 Years">19 Years</ion-option>
+                  <ion-option value="20 Years">20 Years</ion-option>
+                  <ion-option value="21 Years">21 Years</ion-option>
+                  <ion-option value="22 Years">22 Years</ion-option>
+                  <ion-option value="23 Years">23 Years</ion-option>
+                  <ion-option value="24 Years">24 Years</ion-option>
+                  <ion-option value="25 Years">25 Years</ion-option>
+                  <ion-option value="26 Years">26 Years</ion-option>
+                  <ion-option value="27 Years">27 Years</ion-option>
+                  <ion-option value="28 Years">28 Years</ion-option>
+                  <ion-option value="29 Years">29 Years</ion-option>
+                  <ion-option value="30 Years">30 Years</ion-option>
+                  <ion-option value="31 Years">31 Years</ion-option>
+                  <ion-option value="32 Years">32 Years</ion-option>
+                  <ion-option value="33 Years">33 Years</ion-option>
+                  <ion-option value="34 Years">34 Years</ion-option>
+                  <ion-option value="35 Years">35 Years</ion-option>
+                  <ion-option value="36 Years">36 Years</ion-option>
+                  <ion-option value="37 Years">37 Years</ion-option>
+                  <ion-option value="38 Years">38 Years</ion-option>
+                  <ion-option value="39 Years">39 Years</ion-option>
+                  <ion-option value="40 Years">40 Years</ion-option>
+                  <ion-option value="41 Years">41 Years</ion-option>
+                  <ion-option value="42 Years">42 Years</ion-option>
+                  <ion-option value="43 Years">43 Years</ion-option>
+                  <ion-option value="44 Years">44 Years</ion-option>
+                  <ion-option value="45 Years">45 Years</ion-option>
+                  <ion-option value="46 Years">46 Years</ion-option>
+                  <ion-option value="47 Years">47 Years</ion-option>
+                  <ion-option value="48 Years">48 Years</ion-option>
+                  <ion-option value="49 Years">49 Years</ion-option>
+                  <ion-option value="50+">50+</ion-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-top: 25px;">
+        <ion-row>
+          <ion-col col-12 full class="cols my_input">
+            <ion-row>
+              <ion-col col-5 style="padding-top:18px;">
+                <label>Select Martial-Status</label>
+              </ion-col>
+              <ion-col col-7>
+                <ion-select interface="popover" class="selector" [(ngModel)]="MaritalStatus" formControlName="maritalstatus">
+                  <ion-option value="Married">Married</ion-option>
+                  <ion-option value="Single">Single</ion-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-12 full class="cols my_input">
+            <ion-row>
+              <ion-col col-5 style="padding-top:18px;">
+                <label>Select Category</label>
+              </ion-col>
+              <ion-col col-7>
+                <ion-select interface="popover" class="selector" [(ngModel)]="Category" formControlName="category">
+                  <ion-option value="Baby Sitter">Baby Sitter</ion-option>
+                  <ion-option value="Cleaning Service">Cleaning Service</ion-option>
+                  <ion-option value="Gardening">Gardening</ion-option>
+                  <ion-option value="Doctor & Nurse">Doctor & Nurse</ion-option>
+                  <ion-option value="Plumber Service">Plumber Service</ion-option>
+                  <ion-option value="Laundry Service">Laundry Service</ion-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+
+
+
+        <ion-row style= "margin-top:50px;">
+          <ion-col cols-12>
+            <button ion-button full round padding>Register</button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 25px;" text-center>
           <ion-col cols-12>
             <ion-list>
               <ion-row>

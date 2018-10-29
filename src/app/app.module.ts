@@ -24,17 +24,17 @@ import { DummyPage } from '../pages/dummy/dummy';
 import { VendersPage } from '../pages/venders/venders';
 import { TestPage } from '../pages/test/test';
 import { EmpregistrationPage } from '../pages/empregistration/empregistration';
-
-
-// Libraries
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire'
 import { VendorMainPage } from '../pages/vendor-main/vendor-main';
 import { VendorAccountPage } from '../pages/vendor-account/vendor-account';
 import { VendorBookingsPage } from '../pages/vendor-bookings/vendor-bookings';
 import { VendorReviewsPage } from '../pages/vendor-reviews/vendor-reviews';
 import { VendorProfilePage } from '../pages/vendor-profile/vendor-profile';
+
+// Libraries
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire'
+
 
 var config = {
   apiKey: "AIzaSyBouFPqwMCAb33Bf2I5fzNDDJikUBkUTE0",

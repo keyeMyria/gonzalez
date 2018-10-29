@@ -12,7 +12,7 @@
         background: none; width: 100%; color: #FFFFFF;
 
         .my_input{
-            background-color: #7EA515;
+            background-color: #7EA515; color: white;
         }
 
         .cols{
@@ -30,6 +30,18 @@
             margin-left: 2px;
             input::placeholder {
                 color:white!important;
+            }
+            input::-moz-placeholder {
+                color: white;
+            }
+            
+            input:-ms-input-placeholder {
+                color: white;
+            }
+            
+            input::-webkit-input-placeholder {
+                text-indent: 0;
+                color: white;
             }
         }
 

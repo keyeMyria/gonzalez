@@ -6,7 +6,6 @@ import { AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AngularFireAuth } from '@angular/fire/auth';
 declare var navigator;
-
 @IonicPage()
 @Component({
   selector: 'page-account',
@@ -59,7 +58,9 @@ export class AccountPage {
       })
       .catch( err => {
         console.log(err);
+        localStorage.clear();
         loading.dismiss();
+        this.app.getRootNav().setRoot(HomePage);
       }); 
     }
     else{

@@ -22,7 +22,7 @@ export class SignUpPage {
     contact: "",
     nationality: "",
     address: "",
-    id: ""
+    id: "",
   }
   constructor(private fire: AngularFireAuth,
               private db: AngularFireDatabase, 

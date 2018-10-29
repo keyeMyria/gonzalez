@@ -9,6 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainPage } from '../main/main';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { EmpregistrationPage } from '../empregistration/empregistration';
+import { VendorMainPage } from '../vendor-main/vendor-main';
 declare var navigator;  
 @Component({
   selector: 'page-home',
@@ -207,26 +208,28 @@ export class HomePage {
           this.userData.id  = id;
 
           this.db.object(`Users/${this.userData.id}`).valueChanges().subscribe(res => {
-            if(res == null){
-                this.userData.email = data.user.email;
-                this.userData.name = data.user.displayName;
-                this.userData.image = data.user.photoURL;
-                this.db.object(`Users/${this.userData.id}`).set(this.userData).then( res=> {
+            console.log("Response: " + res);
+            console.log("Response: " + JSON.stringify(res));
+            if(res  == null || res == undefined){
+              console.log("No User found, might be it's vendor");
+              this.db.object(`Vendors/${this.userData.id}`).valueChanges().subscribe(vRes=>{
+                if(vRes == null || vRes == undefined){
                   loading.dismiss();
+                  this.showAlert("Opss!!!", "Something went wrong.\nPlease try again later");
+                }
+                else{
+                  console.log("Vendor Record Found");
+                  console.log("Vendor:" + JSON.stringify(vRes));
+                  let vendorData = vRes;
                   localStorage.clear();
-                  localStorage.setItem("user", JSON.stringify(this.userData));
-                  this.navCtrl.setRoot(MainPage);
-                }).catch( err=>{
-                  loading.dismiss();          
-                  console.log("Error is: " + err);
-                  let str = JSON.stringify(err);
-                  console.log("Stringify: " + str);
-                  let errors = JSON.parse(str);
-                  console.log("Errors: " + errors["message"]);
-                  this.showAlert("SIGNIN-FAILED", errors.message);
-                });
+                  localStorage.setItem("vendor", JSON.stringify(vendorData));
+                  loading.dismiss();
+                  this.navCtrl.setRoot(VendorMainPage);
+                }
+              });
             }
             else{
+              console.log("user Record Found");
               console.log("User:" + JSON.stringify(res));
               let userData1 = res;
               localStorage.clear();
@@ -234,6 +237,33 @@ export class HomePage {
               loading.dismiss();
               this.navCtrl.setRoot(MainPage);
             }
+            // if(res == null){
+            //     this.userData.email = data.user.email;
+            //     this.userData.name = data.user.displayName;
+            //     this.userData.image = data.user.photoURL;
+            //     this.db.object(`Users/${this.userData.id}`).set(this.userData).then( res=> {
+            //       loading.dismiss();
+            //       localStorage.clear();
+            //       localStorage.setItem("user", JSON.stringify(this.userData));
+            //       this.navCtrl.setRoot(MainPage);
+            //     }).catch( err=>{
+            //       loading.dismiss();          
+            //       console.log("Error is: " + err);
+            //       let str = JSON.stringify(err);
+            //       console.log("Stringify: " + str);
+            //       let errors = JSON.parse(str);
+            //       console.log("Errors: " + errors["message"]);
+            //       this.showAlert("SIGNIN-FAILED", errors.message);
+            //     });
+            // }
+            // else{
+            //   console.log("User:" + JSON.stringify(res));
+            //   let userData1 = res;
+            //   localStorage.clear();
+            //   localStorage.setItem("user", JSON.stringify(userData1));
+            //   loading.dismiss();
+            //   this.navCtrl.setRoot(MainPage);
+            // }
           });
 
         })
