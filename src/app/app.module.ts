@@ -30,6 +30,11 @@ import { EmpregistrationPage } from '../pages/empregistration/empregistration';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire'
+import { VendorMainPage } from '../pages/vendor-main/vendor-main';
+import { VendorAccountPage } from '../pages/vendor-account/vendor-account';
+import { VendorBookingsPage } from '../pages/vendor-bookings/vendor-bookings';
+import { VendorReviewsPage } from '../pages/vendor-reviews/vendor-reviews';
+import { VendorProfilePage } from '../pages/vendor-profile/vendor-profile';
 
 var config = {
   apiKey: "AIzaSyBouFPqwMCAb33Bf2I5fzNDDJikUBkUTE0",
@@ -59,7 +64,12 @@ var config = {
     VendersPage,
     TestPage,
     DummyPage,
-    EmpregistrationPage
+    EmpregistrationPage,
+    VendorMainPage,
+    VendorBookingsPage,
+    VendorAccountPage,
+    VendorReviewsPage,
+    VendorProfilePage
     ],
   imports: [
     BrowserModule,
@@ -67,7 +77,7 @@ var config = {
     AngularFireAuthModule,
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
-    StarRatingModule
+    StarRatingModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -88,7 +98,12 @@ var config = {
     VendersPage,
     TestPage,
     DummyPage,
-    EmpregistrationPage
+    EmpregistrationPage,
+    VendorMainPage,
+    VendorBookingsPage,
+    VendorAccountPage,
+    VendorReviewsPage, 
+    VendorProfilePage
   ],
   providers: [
     StatusBar,    

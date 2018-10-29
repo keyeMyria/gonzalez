@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Vendor Reviews</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content text-center class="review_main">
+<ion-spinner *ngIf="hideMe" name ="bubbles" class="review_loading"></ion-spinner>
+<ion-refresher (ionRefresh)="doRefresher($event)">
+  <ion-refresher-content
+    pullingIcon="Refresh"
+    pullingText= "Refresh Views"
+    refreshingSpinners="circles"
+    refreshingText="Refreshing...">
+  </ion-refresher-content>
+</ion-refresher>
+<ion-list>
+  <ion-item *ngFor="let item of reviews">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3>
+         <h3>{{item.rating}}</h3>
+        </ion-col>
+        <ion-col col-9 style="text-align: left; background: none;">
+          <ionic3-star-rating style="font:10px"
+          (ngModelChange)="onModelChange($event)"
+          aciveIcon="star"
+          defaultIcon="star-outline"
+          activeColor = "#CA6F1E" 
+          defaultColor = "#AEB6BF"
+          readonly="true"
+          [rating]="item.rating">
+          </ionic3-star-rating>
+          <ion-row style="background:none">
+            <ion-col col-12 style="background:none; text-align: start">
+              <h2 style="color: gray;">by <b style="color: black;margin-top:2px;">{{item.name}}</b></h2>
+            </ion-col>
+            <ion-col col-12 style="text-align: start;">
+              <p>{{item.time}}</p>
+            </ion-col>
+          </ion-row>  
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <h2 style="color:rgb(7, 206, 7)">"Good jobs, will hire again"</h2>
+      <p style="font-size: 15px">qwertyuioasdfghjklzxcvbnm,wertyuiopsdfghj
+        klxcvbnmertyuiodfghjkxcvbnm</p>
+    </ion-item>
+
+  </ion-item>
+
+</ion-list>
+<ion-infinite-scroll (ionInfinite)="loadMoreData($event, 4)">
+  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading More Vendor's Profile">
+
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
