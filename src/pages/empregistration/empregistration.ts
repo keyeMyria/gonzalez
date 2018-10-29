@@ -1,19 +1,12 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Validators, FormGroup, FormControl, EmailValidator } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { SignUpPage } from '../sign-up/sign-up';
-
-/**
- * Generated class for the EmpregistrationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+declare var navigator;  
 @IonicPage()
 @Component({
   selector: 'page-empregistration',

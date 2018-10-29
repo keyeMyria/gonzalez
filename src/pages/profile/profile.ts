@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from '@angular/fire/auth';
-
 declare var navigator;  
 @IonicPage()
 @Component({

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
-import { Renderer } from '@angular/core';
+
 @IonicPage()
 @Component({
   selector: 'page-dummy',
@@ -20,8 +20,4 @@ export class DummyPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
-  // model(){
-  // let model=this.modalCtrl.create(DummyPage);
-  // model.present();
-  // }
 }

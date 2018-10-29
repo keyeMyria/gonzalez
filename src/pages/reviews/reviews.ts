@@ -82,7 +82,7 @@ export class ReviewsPage {
         // let d1 = this.moment.unix();
         // let d = this.moment.unix(i.created_at).format("MM/DD/YYYY");
       }
-      this.hideMe = false;
+      // this.hideMe = false;
       this.ref.detectChanges();
       // let count = this.reviews.length;
       // console.log("Favorite Size: " + this.reviews.length);
@@ -92,7 +92,7 @@ export class ReviewsPage {
       //   this.loadMore();
       // }
     }, (err) => {
-      this.hideMe = false;
+      // this.hideMe = false;
       this.ref.detectChanges();
       console.log("Data: " + JSON.stringify("Error Reading " + err));
     }) 

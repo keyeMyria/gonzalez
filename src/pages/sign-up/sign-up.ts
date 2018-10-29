@@ -6,7 +6,6 @@ import { AlertController } from 'ionic-angular';
 import { MainPage } from '../main/main';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { EmpregistrationPage } from '../empregistration/empregistration';
-
 declare var navigator;
 @IonicPage()
 @Component({

@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ReviewsPage } from '../reviews/reviews';
 import { DummyPage } from '../dummy/dummy';
-
-
 @IonicPage()
 @Component({
   selector: 'page-vendor',
@@ -31,13 +29,8 @@ export class VendorPage {
     this.navCtrl.push(ReviewsPage, {vendor: item});
   }
 
-  // onItemClick(item: any){
-  //   console.log(JSON.stringify(item));
-  //   this.navCtrl.push(ReviewsPage, {review: item});
-  // }
   hireMe(hire: string){
     console.log("Hire me:" + hire);
-     //this.navCtrl.push(DummyPage,{dummy:hire});
      let model=this.modalCtrl.create(DummyPage);
      model.present();
   }

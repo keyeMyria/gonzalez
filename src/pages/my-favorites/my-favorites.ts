@@ -4,7 +4,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { VendorPage } from '../vendor/vendor';
-
 declare var navigator;
 @IonicPage()
 @Component({

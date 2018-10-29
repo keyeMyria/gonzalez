@@ -25,42 +25,6 @@ export class CategoriesPage {
     this.navCtrl.push(VendersPage, {category: cat});
   }
 
-  // gardeningServices(){
-  //   let loading = this.loadingCtrl.create({
-  //     content: 'User Request.<br/>Please wait...'
-  //    });
-  //   loading.present();
-  //   loading.dismiss();  
-  //   this.showAlert("Gardening Services page");
-  // }
-
-  // doctorServices(){
-  //   let loading = this.loadingCtrl.create({
-  //     content: 'User Request.<br/>Please wait...'
-  //    });
-  //   loading.present();
-  //   loading.dismiss();  
-  //   this.showAlert("Doctor & Nurse Services page");
-  // }
-
-  // blumberServices(){
-  //   let loading = this.loadingCtrl.create({
-  //     content: 'User Request.<br/>Please wait...'
-  //    });
-  //   loading.present();
-  //   loading.dismiss();  
-  //   this.showAlert("Blumber Services page");
-  // }
-
-  // laundryServices(){
-  //   let loading = this.loadingCtrl.create({
-  //     content: 'User Request.<br/>Please wait...'
-  //    });
-  //   loading.present();
-  //   loading.dismiss();  
-  //   this.showAlert("Laundry Services page");
-  // }
-
   showAlert(subject:string) {
     let alert = this.alertCtrl.create({
       title: subject,

@@ -9,7 +9,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainPage } from '../main/main';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { EmpregistrationPage } from '../empregistration/empregistration';
-
 declare var navigator;  
 @Component({
   selector: 'page-home',
